@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Salesforce.Core\Crawling.Salesforce.Core.csproj" />
+    <ProjectReference Include="..\..\..\src\Salesforce.Crawling\Crawling.Salesforce.csproj" />
+    <ProjectReference Include="..\..\..\src\Salesforce.Infrastructure\Crawling.Salesforce.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="DeveloperForce.Force" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Salesforce.Core\Crawling.Salesforce.Core.csproj" />
+  </ItemGroup>
+</Project>
