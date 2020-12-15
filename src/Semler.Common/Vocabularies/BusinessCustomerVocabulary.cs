@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CluedIn.Core.Data;
+﻿using CluedIn.Core.Data;
 using CluedIn.Core.Data.Vocabularies;
 
 namespace Semler.Common.Vocabularies
@@ -31,25 +28,24 @@ namespace Semler.Common.Vocabularies
                 City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
                 Country = group.Add(new VocabularyKey("Country", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country"));
                 CountryCode = group.Add(new VocabularyKey("CountryCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code"));
-                CustomerName = group.Add(new VocabularyKey("CustomerName", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Name"));
-                CustomerNumber = group.Add(new VocabularyKey("CustomerNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Number"));
-                CustomerType = group.Add(new VocabularyKey("CustomerType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Type"));
+                CustomerName = group.Add(new VocabularyKey("CustomerName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Name"));
+                CustomerNumber = group.Add(new VocabularyKey("CustomerNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Number"));
+                CustomerType = group.Add(new VocabularyKey("CustomerType", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Type"));
                 CVRNumber = group.Add(new VocabularyKey("CVRNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("CVR Number"));
                 Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Email, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail"));
                 PhoneNumber = group.Add(new VocabularyKey("PhoneNumber", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Phone Number"));
                 PostalCode = group.Add(new VocabularyKey("PostalCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code"));
                 State = group.Add(new VocabularyKey("State", VocabularyKeyDataType.GeographyState, VocabularyKeyVisibility.Visible).WithDisplayName("State"));
                 StateCode = group.Add(new VocabularyKey("StateCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("State Code"));
-                Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
-
-                //Geomatic
-                COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
+                Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Uri, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
+                COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
                 LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("LastName"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
+                Eannumber = group.Add(new VocabularyKey("eannumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Eannumer").WithDescription("International Article Number"));
+                Taxcode = group.Add(new VocabularyKey("taxcode", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Taxcode").WithDescription("Tax Code"));
             });
 
-            //SalesForce
             AddMapping(BillingAddress, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
             AddMapping(BillingCity, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
             AddMapping(BillingCountry, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryName);
@@ -57,12 +53,26 @@ namespace Semler.Common.Vocabularies
             AddMapping(BillingPostalCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressZipCode);
             AddMapping(CVRNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.VatNumber);
             AddMapping(Email, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Email);
-
-            //Geomatic
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
+
+            AddMapping(Name, SemlerVocabularies.Customer.CustomerName);
+            AddMapping(FirstName, SemlerVocabularies.Customer.FirstName);
+            AddMapping(LastName, SemlerVocabularies.Customer.LastName);
+            AddMapping(COName, SemlerVocabularies.Customer.COName);
+            AddMapping(Address, SemlerVocabularies.Customer.Address1);
+            AddMapping(Address, SemlerVocabularies.Customer.Address2);
+            AddMapping(City, SemlerVocabularies.Customer.Address2);
+            AddMapping(PostalCode, SemlerVocabularies.Customer.Address2);
+            AddMapping(CountryCode, SemlerVocabularies.Customer.CountryCode);
+            AddMapping(Email, SemlerVocabularies.Customer.Email);
+            AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
+            AddMapping(CVRNumber, SemlerVocabularies.Customer.CvrNumber);
+            AddMapping(Eannumber, SemlerVocabularies.Customer.EanNumber);
+            AddMapping(Taxcode, SemlerVocabularies.Customer.TaxCode);
         }
+
         public VocabularyKey AccountSource { get; private set; }
         public VocabularyKey Address { get; private set; }
         public VocabularyKey BillingAddress { get; private set; }
@@ -90,5 +100,7 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey State { get; private set; }
         public VocabularyKey StateCode { get; private set; }
         public VocabularyKey Website { get; private set; }
+        public VocabularyKey Eannumber { get; private set; }
+        public VocabularyKey Taxcode { get; private set; }
     }
 }
