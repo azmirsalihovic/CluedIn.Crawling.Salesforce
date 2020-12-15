@@ -1,4 +1,4 @@
-﻿namespace CluedIn.Semler.Common
+﻿namespace Semler.Common.Vocabularies
 {
     public static class Origins
     {
