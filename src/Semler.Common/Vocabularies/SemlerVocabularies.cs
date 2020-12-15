@@ -11,6 +11,5 @@ namespace Semler.Common.Vocabularies
         public static BusinessCustomerVocabulary BusinessCustomer => new BusinessCustomerVocabulary();
         public static ContactVocabulary Contact => new ContactVocabulary();
         public static SemlerAddress SemlerAddress => new SemlerAddress();
-
     }
 }

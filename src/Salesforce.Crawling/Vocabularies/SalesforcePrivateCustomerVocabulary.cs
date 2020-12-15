@@ -159,6 +159,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
                 Website = group.Add(new VocabularyKey("website", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
             });
 
+            //CluedIn vocabs
             AddMapping(Industry, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.Industry);
             AddMapping(NumberOfEmployees, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.EmployeeCount);
             AddMapping(Website, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.Website);
@@ -166,45 +167,46 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
             AddMapping(AnnualRevenue, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AnnualRevenue);
             AddMapping(Phone, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.PhoneNumber);
             AddMapping(SystemModstamp, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInDates.ModifiedDate);
+
+            //Semler vocabs
             AddMapping(AccountNumber, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.AccountNumber);
             AddMapping(AccountSource, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.AccountSource);
+            //AddMapping(PersonMailingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(PersonMailingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(PersonOtherAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(PersonOtherStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
             AddMapping(BillingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.BillingAddress);
             AddMapping(BillingCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.BillingCity);
             AddMapping(BillingCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.BillingCountry);
             AddMapping(BillingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.BillingCountryCode);
             AddMapping(BillingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.BillingPostalCode);
-            AddMapping(CustomerCityC, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.CustomerCity__c);
-            AddMapping(PersonBirthDate, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonBirthdate);
-            AddMapping(PersonOtherAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherAddress);
-            AddMapping(PersonOtherCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherCity);
-            AddMapping(PersonOtherCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherCountry);
-            AddMapping(PersonOtherCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherCountryCode);
-            AddMapping(PersonOtherPhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherPhone);
-            AddMapping(PersonOtherPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.OtherPostalCode);
-            AddMapping(PersonOtherState, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonOtherState);
-            AddMapping(PersonOtherStateCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonOtherStateCode);
-            AddMapping(PersonOtherStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonOtherStreet);
-            AddMapping(PersonHomePhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonHomePhone);
-            AddMapping(PersonMailingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.MailingAddress);
-            AddMapping(PersonMailingCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.MailingCity);
-            AddMapping(PersonMailingCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.MailingCountry);
-            AddMapping(PersonMailingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.MailingCountryCode);
-            AddMapping(PersonMailingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.MailingPostalCode);
-            AddMapping(PersonMailingState, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonMailingState);
-            AddMapping(PersonMailingStateCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonMailingStateCode);
-            AddMapping(PersonMailingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonMailingStreet);
-            AddMapping(PersonMobilePhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonMobilePhone);
-            AddMapping(PersonTitle, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PersonTitle);
+            AddMapping(PersonBirthDate, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Birthdate);
+            //AddMapping(CustomerCityC, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.City);
+            //AddMapping(PersonMailingCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.City);
+            //AddMapping(PersonOtherCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.City);
+            //AddMapping(ShippingCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.City);
+            //AddMapping(PersonOtherCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Country);
+            //AddMapping(ShippingCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Country);
+            //AddMapping(PersonMailingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.CountryCode);
+            //AddMapping(PersonOtherCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.CountryCode);
+            //AddMapping(ShippingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.CountryCode);
+            //AddMapping(Type, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.CustomerType);
             AddMapping(PersonEmail, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Email);
             AddMapping(FirstName, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.FirstName);
             AddMapping(LastName, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.LastName);
-            AddMapping(Phone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Phone);
-            AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.ShippingAddress);
-            AddMapping(ShippingCity, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.ShippingCity);
-            AddMapping(ShippingCountry, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.ShippingCountry);
-            AddMapping(ShippingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.ShippingCountryCode);
-            AddMapping(ShippingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.ShippingPostalCode);
-            AddMapping(Type, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Type);
+            //AddMapping(PersonHomePhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PhoneNumber);
+            //AddMapping(PersonMobilePhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PhoneNumber);
+            //AddMapping(PersonOtherPhone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PhoneNumber);
+            //AddMapping(Phone, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PhoneNumber);
+            //AddMapping(PersonMailingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PostalCode);
+            //AddMapping(PersonOtherPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PostalCode);
+            //AddMapping(ShippingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.PostalCode);
+            //AddMapping(PersonMailingState, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.State);
+            //AddMapping(PersonOtherState, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.State);
+            //AddMapping(PersonMailingStateCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.StateCode);
+            //AddMapping(PersonOtherStateCode, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.StateCode);
+            //AddMapping(PersonTitle, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Title);
         }
 
         public VocabularyKey Description { get; protected set; }
