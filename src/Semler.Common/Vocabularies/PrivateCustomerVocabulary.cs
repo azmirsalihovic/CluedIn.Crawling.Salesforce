@@ -51,6 +51,18 @@ namespace Semler.Common.Vocabularies
             AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
             AddMapping(Title, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Title);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
+
+            AddMapping(Name, SemlerVocabularies.Customer.CustomerName);
+            AddMapping(FirstName, SemlerVocabularies.Customer.FirstName);
+            AddMapping(LastName, SemlerVocabularies.Customer.LastName);
+            AddMapping(COName, SemlerVocabularies.Customer.COName);
+            AddMapping(Address, SemlerVocabularies.Customer.Address1);
+            AddMapping(Address, SemlerVocabularies.Customer.Address2);
+            AddMapping(City, SemlerVocabularies.Customer.Address2);
+            AddMapping(PostalCode, SemlerVocabularies.Customer.Address2);
+            AddMapping(CountryCode, SemlerVocabularies.Customer.CountryCode);
+            AddMapping(Email, SemlerVocabularies.Customer.Email);
+            AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
         }
 
         public VocabularyKey AccountNumber { get; private set; }
@@ -76,6 +88,5 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey State { get; private set; }
         public VocabularyKey StateCode { get; private set; }
         public VocabularyKey Title { get; private set; }
-        public VocabularyKey Coname { get; private set; }
     }
 }

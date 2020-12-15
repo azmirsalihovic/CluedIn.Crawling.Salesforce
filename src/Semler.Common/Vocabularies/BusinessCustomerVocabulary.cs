@@ -56,6 +56,21 @@ namespace Semler.Common.Vocabularies
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
+
+            AddMapping(Name, SemlerVocabularies.Customer.CustomerName);
+            AddMapping(FirstName, SemlerVocabularies.Customer.FirstName);
+            AddMapping(LastName, SemlerVocabularies.Customer.LastName);
+            AddMapping(COName, SemlerVocabularies.Customer.COName);
+            AddMapping(Address, SemlerVocabularies.Customer.Address1);
+            AddMapping(Address, SemlerVocabularies.Customer.Address2);
+            AddMapping(City, SemlerVocabularies.Customer.Address2);
+            AddMapping(PostalCode, SemlerVocabularies.Customer.Address2);
+            AddMapping(CountryCode, SemlerVocabularies.Customer.CountryCode);
+            AddMapping(Email, SemlerVocabularies.Customer.Email);
+            AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
+            AddMapping(CVRNumber, SemlerVocabularies.Customer.CvrNumber);
+            AddMapping(Eannumber, SemlerVocabularies.Customer.EanNumber);
+            AddMapping(Taxcode, SemlerVocabularies.Customer.TaxCode);
         }
 
         public VocabularyKey AccountSource { get; private set; }
