@@ -1,4 +1,4 @@
-﻿namespace Semler.Common.Vocabularies
+﻿namespace Semler.Common
 {
     public static class Origins
     {
