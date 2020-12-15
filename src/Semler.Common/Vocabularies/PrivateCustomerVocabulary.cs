@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CluedIn.Core.Data;
+﻿using CluedIn.Core.Data;
 using CluedIn.Core.Data.Vocabularies;
 
 namespace Semler.Common.Vocabularies
@@ -17,7 +14,6 @@ namespace Semler.Common.Vocabularies
 
             AddGroup("Semler Private Customer Details", group =>
             {
-                //SalesForce
                 AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Number"));
                 AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
                 Address = group.Add(new VocabularyKey("Address", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Address"));
@@ -39,8 +35,6 @@ namespace Semler.Common.Vocabularies
                 State = group.Add(new VocabularyKey("State", VocabularyKeyDataType.GeographyState, VocabularyKeyVisibility.Visible).WithDisplayName("State"));
                 StateCode = group.Add(new VocabularyKey("StateCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("State Code"));
                 Title = group.Add(new VocabularyKey("Title", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Title"));
-
-                //Geomatic
                 COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
             });
@@ -56,10 +50,9 @@ namespace Semler.Common.Vocabularies
             AddMapping(PhoneNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
             AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
             AddMapping(Title, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Title);
-
-            //Geomatic
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
         }
+
         public VocabularyKey AccountNumber { get; private set; }
         public VocabularyKey AccountSource { get; private set; }
         public VocabularyKey BillingAddress { get; private set; }
@@ -83,5 +76,6 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey State { get; private set; }
         public VocabularyKey StateCode { get; private set; }
         public VocabularyKey Title { get; private set; }
+        public VocabularyKey Coname { get; private set; }
     }
 }
