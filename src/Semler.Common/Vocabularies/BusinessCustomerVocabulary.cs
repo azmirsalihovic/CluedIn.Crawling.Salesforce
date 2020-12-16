@@ -38,14 +38,15 @@ namespace Semler.Common.Vocabularies
                 State = group.Add(new VocabularyKey("State", VocabularyKeyDataType.GeographyState, VocabularyKeyVisibility.Visible).WithDisplayName("State"));
                 StateCode = group.Add(new VocabularyKey("StateCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("State Code"));
                 Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Uri, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
+
+                //Geomatic
                 COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
                 LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("LastName"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
-                Eannumber = group.Add(new VocabularyKey("eannumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Eannumer").WithDescription("International Article Number"));
-                Taxcode = group.Add(new VocabularyKey("taxcode", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Taxcode").WithDescription("Tax Code"));
             });
 
+            //SalesForce
             AddMapping(BillingAddress, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
             AddMapping(BillingCity, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
             AddMapping(BillingCountry, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryName);
@@ -53,6 +54,8 @@ namespace Semler.Common.Vocabularies
             AddMapping(BillingPostalCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressZipCode);
             AddMapping(CVRNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.VatNumber);
             AddMapping(Email, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Email);
+
+            //Geomatic
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
@@ -72,7 +75,6 @@ namespace Semler.Common.Vocabularies
             AddMapping(Eannumber, SemlerVocabularies.Customer.EanNumber);
             AddMapping(Taxcode, SemlerVocabularies.Customer.TaxCode);
         }
-
         public VocabularyKey AccountSource { get; private set; }
         public VocabularyKey Address { get; private set; }
         public VocabularyKey BillingAddress { get; private set; }

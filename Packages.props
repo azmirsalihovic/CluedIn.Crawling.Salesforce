@@ -39,7 +39,7 @@
     <PackageReference Update="CluedIn.Server.Common.WebApi" Version="$(_CluedIn)" />
     <PackageReference Update="CluedIn.Agent" Version="$(_CluedIn)" />
     <PackageReference Update="CluedIn.Server.WebApi" Version="$(_CluedIn)" />
-    <PackageReference Update="CluedIn.Semler.Common" Version="$(_CluedIn)" />
+    <PackageReference Update="CluedIn.Semler.Common" Version="3.0.0-alpha.15" />
 
   </ItemGroup>
 </Project>

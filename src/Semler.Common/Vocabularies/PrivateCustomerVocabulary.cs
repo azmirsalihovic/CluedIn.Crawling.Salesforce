@@ -14,6 +14,7 @@ namespace Semler.Common.Vocabularies
 
             AddGroup("Semler Private Customer Details", group =>
             {
+                //SalesForce
                 AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Number"));
                 AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
                 Address = group.Add(new VocabularyKey("Address", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Address"));
@@ -35,6 +36,8 @@ namespace Semler.Common.Vocabularies
                 State = group.Add(new VocabularyKey("State", VocabularyKeyDataType.GeographyState, VocabularyKeyVisibility.Visible).WithDisplayName("State"));
                 StateCode = group.Add(new VocabularyKey("StateCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("State Code"));
                 Title = group.Add(new VocabularyKey("Title", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Title"));
+
+                //Geomatic
                 COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
             });
@@ -50,6 +53,8 @@ namespace Semler.Common.Vocabularies
             AddMapping(PhoneNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
             AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
             AddMapping(Title, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Title);
+
+            //Geomatic
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
 
             AddMapping(Name, SemlerVocabularies.Customer.CustomerName);
@@ -64,7 +69,6 @@ namespace Semler.Common.Vocabularies
             AddMapping(Email, SemlerVocabularies.Customer.Email);
             AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
         }
-
         public VocabularyKey AccountNumber { get; private set; }
         public VocabularyKey AccountSource { get; private set; }
         public VocabularyKey BillingAddress { get; private set; }

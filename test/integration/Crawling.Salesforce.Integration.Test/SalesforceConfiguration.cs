@@ -9,7 +9,7 @@ namespace CluedIn.Crawling.Salesforce.Integration.Test
         {
             return new Dictionary<string, object>
             {
-                { SalesforceConstants.KeyName.ApiKey, "" },
+                { SalesforceConstants.KeyName.ApiKey, "https://semler.my.salesforce.com/" },
                 { SalesforceConstants.KeyName.GrantType, "" },
                 { SalesforceConstants.KeyName.ClientId, "" },
                 { SalesforceConstants.KeyName.ClientSecret, "" },
