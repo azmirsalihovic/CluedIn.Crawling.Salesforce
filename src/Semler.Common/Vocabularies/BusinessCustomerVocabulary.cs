@@ -44,6 +44,9 @@ namespace Semler.Common.Vocabularies
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
                 LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("LastName"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
+
+                Eannumber = group.Add(new VocabularyKey("eannumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Eannumer").WithDescription("International Article Number"));
+                Taxcode = group.Add(new VocabularyKey("taxcode", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Taxcode").WithDescription("Tax Code"));
             });
 
             //SalesForce
