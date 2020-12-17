@@ -18,7 +18,7 @@ using CluedIn.Core.Utilities;
 
 namespace CluedIn.Crawling.Salesforce.Subjects
 {
-    //public class AccountClueProducer : BaseClueProducer<Account>
+    //public class AccountClueProducer : BaseClueProducer<Account> 
     //{
     //    private readonly IClueFactory _factory;
 
