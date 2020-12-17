@@ -67,10 +67,9 @@ namespace Semler.Common.Vocabularies
             AddMapping(FirstName, SemlerVocabularies.Customer.FirstName);
             AddMapping(LastName, SemlerVocabularies.Customer.LastName);
             AddMapping(COName, SemlerVocabularies.Customer.COName);
-            AddMapping(Address, SemlerVocabularies.Customer.Address1);
-            AddMapping(Address, SemlerVocabularies.Customer.Address2);
-            AddMapping(City, SemlerVocabularies.Customer.Address2);
-            AddMapping(PostalCode, SemlerVocabularies.Customer.Address2);
+            AddMapping(Address, SemlerVocabularies.Customer.Address);
+            AddMapping(City, SemlerVocabularies.Customer.City);
+            AddMapping(PostalCode, SemlerVocabularies.Customer.PostalCode);
             AddMapping(CountryCode, SemlerVocabularies.Customer.CountryCode);
             AddMapping(Email, SemlerVocabularies.Customer.Email);
             AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
