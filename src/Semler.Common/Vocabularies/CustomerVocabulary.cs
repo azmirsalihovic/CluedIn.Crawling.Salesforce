@@ -14,8 +14,7 @@ namespace Semler.Common.Vocabularies
 
             AddGroup("Semler Customer Details", group =>
             {
-                Address1 = group.Add(new VocabularyKey("Address1", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("Address 1"));
-                Address2 = group.Add(new VocabularyKey("Address2", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("Address 2"));
+                Address = group.Add(new VocabularyKey("Address", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("Address"));
                 CountryCode = group.Add(new VocabularyKey("CountryCode", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code"));
                 CustomerType = group.Add(new VocabularyKey("CustomerType", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Type"));
                 CvrNumber = group.Add(new VocabularyKey("CvrNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("CVR Number"));
@@ -42,8 +41,7 @@ namespace Semler.Common.Vocabularies
             AddMapping(TaxCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.TaxId);
         }
 
-        public VocabularyKey Address1 { get; private set; }
-        public VocabularyKey Address2 { get; private set; }
+        public VocabularyKey Address { get; private set; }
         public VocabularyKey City { get; private set; }
         public VocabularyKey CountryCode { get; private set; }
         public VocabularyKey COName { get; private set; }
