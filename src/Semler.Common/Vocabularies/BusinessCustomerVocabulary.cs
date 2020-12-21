@@ -87,14 +87,16 @@ namespace Semler.Common.Vocabularies
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
                 PostalCodePer2 = group.Add(new VocabularyKey("PostalCodePer2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 2"));
 
-                //Where do theese come from???
-                //Eannumber = group.Add(new VocabularyKey("eannumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Eannumer").WithDescription("International Article Number"));
-                //Taxcode = group.Add(new VocabularyKey("taxcode", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Taxcode").WithDescription("Tax Code"));
+                //KUK
+                TaxCode = group.Add(new VocabularyKey("TaxCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Tax Code"));
+                EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
             });
 
             //SalesForce (need review)
-            AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.Address);
-            AddMapping(BillingCity, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.Address);
+            AddMapping(AdrLine1Bill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.Address);
+            AddMapping(AdrStreet, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressStreetName);
+            AddMapping(AdrStrNum, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressStreetNumber);
+            AddMapping(BillingCity, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressCity);
             AddMapping(BillingCountry, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressCountryName);
             AddMapping(BillingCountryCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressCountryCode);
             AddMapping(BillingPostalCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.AddressZipCode);
@@ -224,6 +226,8 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey NamePer2 { get; private set; }
         public VocabularyKey PostalCodePer1 { get; private set; }
         public VocabularyKey PostalCodePer2 { get; private set; }
+        public VocabularyKey TaxCode { get; private set; }
+        public VocabularyKey EANNumber { get; private set; }
         public VocabularyKey PostalCode { get; private set; }
         public VocabularyKey AdrLine1Ship { get; private set; }
         public VocabularyKey AdrLine2Ship { get; private set; }

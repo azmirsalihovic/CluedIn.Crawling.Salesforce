@@ -110,6 +110,10 @@ namespace Semler.Common.Vocabularies
                 //PostalCode = group.Add(new VocabularyKey("PostalCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code"));
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
                 PostalCodePer2 = group.Add(new VocabularyKey("PostalCodePer2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 2"));
+
+                //KUK
+                TaxCode = group.Add(new VocabularyKey("TaxCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Tax Code"));
+                EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
             });
 
             //
@@ -118,7 +122,7 @@ namespace Semler.Common.Vocabularies
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
-            AddMapping(HomePhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
+            AddMapping(HomePhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomePhoneNumber);
             AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
             AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
             AddMapping(CityBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
@@ -165,8 +169,8 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey Website { get; private set; }
         public VocabularyKey CustomerType { get; private set; }
         public VocabularyKey CVRNumber { get; private set; }
-        //public VocabularyKey TaxCode { get; private set; }
-        //public VocabularyKey EanNumber { get; private set; }
+        public VocabularyKey TaxCode { get; private set; }
+        public VocabularyKey EANNumber { get; private set; }
         public VocabularyKey AdrFloor { get; private set; }
         public VocabularyKey AdrHouseChar { get; private set; }
         public VocabularyKey AdrLine1 { get; private set; }

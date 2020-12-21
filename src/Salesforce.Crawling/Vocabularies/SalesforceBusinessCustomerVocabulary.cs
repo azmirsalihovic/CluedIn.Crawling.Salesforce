@@ -171,8 +171,8 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
 
             //Semler vocabs
             AddMapping(AccountSource, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.AccountSource);
-            AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
-            AddMapping(ShippingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(ShippingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
             AddMapping(BillingAddress, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingAddress);
             AddMapping(BillingCity, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingCity);
             AddMapping(BillingCountry, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingCountry);
