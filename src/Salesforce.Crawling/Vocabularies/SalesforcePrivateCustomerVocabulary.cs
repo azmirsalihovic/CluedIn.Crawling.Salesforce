@@ -20,13 +20,13 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
         /// </summary>
         public SalesforcePrivateCustomerVocabulary()
         {
-            VocabularyName = "Salesforce Private Customer";
-            KeyPrefix      = "salesforce.privatecustomer";
+            VocabularyName = "Salesforce User";
+            KeyPrefix      = "salesforce.user";
             KeySeparator   = ".";
             Grouping       = EntityType.Infrastructure.User;
             
 
-            AddGroup("Salesforce Private Customer Details", group =>
+            AddGroup("Salesforce User Details", group =>
             {
                 Description = group.Add(new VocabularyKey("description", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Description").WithDescription("A text description of the account "));
                 ID = group.Add(new VocabularyKey("id", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Account ID"));
