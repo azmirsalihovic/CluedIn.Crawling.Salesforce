@@ -20,13 +20,13 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
         /// </summary>
         public SalesforceBusinessCustomerVocabulary()
         {
-            VocabularyName = "Salesforce Business Customer";
-            KeyPrefix      = "salesforce.businesscustomer";
+            VocabularyName = "Salesforce Organization";
+            KeyPrefix      = "salesforce.organization";
             KeySeparator   = ".";
             Grouping       = EntityType.Organization;
             
 
-            AddGroup("Salesforce Business Customer Details", group =>
+            AddGroup("Salesforce Organization Details", group =>
             {
                 Description = group.Add(new VocabularyKey("description", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Description").WithDescription("A text description of the account "));
                 ID = group.Add(new VocabularyKey("id", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Account ID"));
@@ -171,8 +171,8 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
 
             //Semler vocabs
             AddMapping(AccountSource, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.AccountSource);
-            AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
-            AddMapping(ShippingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(ShippingAddress, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
+            //AddMapping(ShippingStreet, Semler.Common.Vocabularies.SemlerVocabularies.PrivateCustomer.Address);
             AddMapping(BillingAddress, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingAddress);
             AddMapping(BillingCity, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingCity);
             AddMapping(BillingCountry, Semler.Common.Vocabularies.SemlerVocabularies.BusinessCustomer.BillingCountry);
