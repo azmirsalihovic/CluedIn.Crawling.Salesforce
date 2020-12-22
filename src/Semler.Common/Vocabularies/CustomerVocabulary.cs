@@ -15,8 +15,8 @@ namespace Semler.Common.Vocabularies
             AddGroup("Semler Customer Details", group =>
             {
                 //SalesForce
-                AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
                 AccPhone = group.Add(new VocabularyKey("AccPhone", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Account Phone"));
+                AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
                 AdrLine1 = group.Add(new VocabularyKey("AdrLine1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1"));
                 AdrLine1Bill = group.Add(new VocabularyKey("AdrLine1Bill", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Billing"));
                 AdrLine1Other = group.Add(new VocabularyKey("AdrLine1Other", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Other"));
@@ -25,21 +25,21 @@ namespace Semler.Common.Vocabularies
                 AdrLine2Other = group.Add(new VocabularyKey("AdrLine2Other", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2 Other"));
                 AdrLine2Ship = group.Add(new VocabularyKey("AdrLine2Ship", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2 Shipping"));
                 Birthdate = group.Add(new VocabularyKey("Birthdate", VocabularyKeyDataType.DateTime, VocabularyKeyVisibility.Visible).WithDisplayName("Birthdate"));
-                CityCustomer = group.Add(new VocabularyKey("CityCustomer", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Customer"));
+                CVRNumber = group.Add(new VocabularyKey("CVRNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("CVR Number"));
                 City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
-                CityShip = group.Add(new VocabularyKey("CityShip", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Shipping"));
                 CityBill = group.Add(new VocabularyKey("CityBill", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Billing"));
+                CityCustomer = group.Add(new VocabularyKey("CityCustomer", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Customer"));
                 CityOther = group.Add(new VocabularyKey("CityOther", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Other"));
+                CityShip = group.Add(new VocabularyKey("CityShip", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Shipping"));
                 Country = group.Add(new VocabularyKey("Country", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country Shipping"));
                 CountryBill = group.Add(new VocabularyKey("CountryBill", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country Billing"));
                 CountryCode = group.Add(new VocabularyKey("CountryCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code"));
-                CountryCodeShip = group.Add(new VocabularyKey("CountryCodeShip", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code Shipping"));
                 CountryCodeBill = group.Add(new VocabularyKey("CountryCodeBill", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code Billing"));
                 CountryCodeOther = group.Add(new VocabularyKey("CountryCodeOther", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code Other"));
+                CountryCodeShip = group.Add(new VocabularyKey("CountryCodeShip", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Country Code Shipping"));
                 CountryOther = group.Add(new VocabularyKey("CountryOther", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country Other"));
                 CustomerNumber = group.Add(new VocabularyKey("CustomerNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Number"));
                 CustomerType = group.Add(new VocabularyKey("CustomerType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Customer Type"));
-                CVRNumber = group.Add(new VocabularyKey("CVRNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("CVR Number"));
                 Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Email, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail"));
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
                 HomePhoneNr = group.Add(new VocabularyKey("HomePhoneNr", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Home Phone"));
@@ -64,9 +64,14 @@ namespace Semler.Common.Vocabularies
                 Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Uri, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
 
                 //Geomatic
+                //AdrLine1 = group.Add(new VocabularyKey("AdrLine1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1"));
+                //COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
+                //City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
+                //FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
+                //LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name"));
+                //PostalCode = group.Add(new VocabularyKey("PostalCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code"));
                 AdrFloor = group.Add(new VocabularyKey("AdrFloor", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Floor"));
                 AdrHouseChar = group.Add(new VocabularyKey("AdrHouseChar", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address House Character"));
-                //AdrLine1 = group.Add(new VocabularyKey("AdrLine1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1"));
                 AdrLine1Per1 = group.Add(new VocabularyKey("AdrLine1Per1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Person 1"));
                 AdrLine1Per2 = group.Add(new VocabularyKey("AdrLine1Per2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Person 2"));
                 AdrLoc = group.Add(new VocabularyKey("AdrLoc", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Location"));
@@ -75,16 +80,13 @@ namespace Semler.Common.Vocabularies
                 AdrPlace = group.Add(new VocabularyKey("AdrPlace", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Place"));
                 AdrPlacePer1 = group.Add(new VocabularyKey("AdrPlacePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Place Person 1"));
                 AdrPlacePer2 = group.Add(new VocabularyKey("AdrPlacePer2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Place Person 2"));
-                AdrStreet = group.Add(new VocabularyKey("AdrStreet", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Street"));
                 AdrStrNum = group.Add(new VocabularyKey("AdrStrNum", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Street Number"));
+                AdrStreet = group.Add(new VocabularyKey("AdrStreet", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Street"));
                 AdrSuite = group.Add(new VocabularyKey("AdrSuite", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Suite"));
-                //City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
-                CityPer1 = group.Add(new VocabularyKey("CityPer1", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Person 1"));
-                CityPer2 = group.Add(new VocabularyKey("CityPer2", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Person 2"));
-                //COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
                 CONamePer1 = group.Add(new VocabularyKey("CONamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name Person 1"));
                 CONamePer2 = group.Add(new VocabularyKey("CONamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name Person 2"));
-                //FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
+                CityPer1 = group.Add(new VocabularyKey("CityPer1", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Person 1"));
+                CityPer2 = group.Add(new VocabularyKey("CityPer2", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Person 2"));
                 FirstNamePer1 = group.Add(new VocabularyKey("FirstNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name Person 1"));
                 FirstNamePer2 = group.Add(new VocabularyKey("FirstNamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name Person 2"));
                 ForeignAdr1Per1 = group.Add(new VocabularyKey("ForeignAdr1Per1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Foreign Address 1 Person 1"));
@@ -100,103 +102,81 @@ namespace Semler.Common.Vocabularies
                 FullNamePer1 = group.Add(new VocabularyKey("FullNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Full Name Person 1"));
                 FullNamePer2 = group.Add(new VocabularyKey("FullNamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Full Name Person 2"));
                 LandPhoneNum = group.Add(new VocabularyKey("LandPhoneNum", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Landline Phone Number"));
-                //LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name"));
                 LastNamePer1 = group.Add(new VocabularyKey("LastNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name Person 1"));
                 LastNamePer2 = group.Add(new VocabularyKey("LastNamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name Person 2"));
                 MobPhoneNum = group.Add(new VocabularyKey("MobPhoneNum", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Mobile Phone Number"));
-                Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
                 NamePer1 = group.Add(new VocabularyKey("NamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name Person 1"));
                 NamePer2 = group.Add(new VocabularyKey("NamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name Person 2"));
-                //PostalCode = group.Add(new VocabularyKey("PostalCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code"));
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
                 PostalCodePer2 = group.Add(new VocabularyKey("PostalCodePer2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 2"));
 
                 //KUK
-                TaxCode = group.Add(new VocabularyKey("TaxCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Tax Code"));
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
             });
 
             //
             //SalesForce (need review)
+            AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
+            AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
+            AddMapping(CVRNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.VatNumber);
+            AddMapping(CityBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
+            AddMapping(CountryBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryName);
+            AddMapping(CountryCodeBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryCode);
             AddMapping(Email, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Email);
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
+            AddMapping(HomePhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomePhoneNumber);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
-            AddMapping(HomePhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomePhoneNumber);
-            AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
-            AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
-            AddMapping(CityBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
-            AddMapping(CountryCodeBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryCode);
-            AddMapping(CountryBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryName);
             AddMapping(PostalCodeBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressZipCode);
             AddMapping(StateBill, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressState);
-            AddMapping(CVRNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.VatNumber);
-            //AddMapping(TaxCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.TaxId);
         }
 
-        public VocabularyKey City { get; private set; }
-        public VocabularyKey CityBill { get; private set; }
-        public VocabularyKey CityOther { get; private set; }
-        public VocabularyKey Country { get; private set; }
-        public VocabularyKey CountryBill { get; private set; }
-        public VocabularyKey CityShip { get; private set; }
-        public VocabularyKey CountryCode { get; private set; }
-        public VocabularyKey CountryCodeShip { get; private set; }
-        public VocabularyKey CountryCodeBill { get; private set; }
-        public VocabularyKey CountryCodeOther { get; private set; }
-        public VocabularyKey CountryOther { get; private set; }
-        public VocabularyKey CustomerNumber { get; private set; }
-        public VocabularyKey COName { get; private set; }
-        public VocabularyKey Email { get; private set; }
-        public VocabularyKey FirstName { get; private set; }
-        public VocabularyKey HomePhoneNr { get; private set; }
-        public VocabularyKey LastName { get; private set; }
-        public VocabularyKey MobPhoneNr { get; private set; }
-        public VocabularyKey PostalCode { get; private set; }
-        public VocabularyKey PostalCodeBill { get; private set; }
-        public VocabularyKey PostalCodeOther { get; private set; }
-        public VocabularyKey PostalCodeShip { get; private set; }
-        public VocabularyKey State { get; private set; }
-        public VocabularyKey StateBill { get; private set; }
-        public VocabularyKey StateCode { get; private set; }
-        public VocabularyKey StateCodeBill { get; private set; }
-        public VocabularyKey StateCodeOther { get; private set; }
-        public VocabularyKey StateCodeShip { get; private set; }
-        public VocabularyKey StateOther { get; private set; }
-        public VocabularyKey StateShip { get; private set; }
-        public VocabularyKey StreetBill { get; private set; }
-        public VocabularyKey Title { get; private set; }
-        public VocabularyKey Website { get; private set; }
-        public VocabularyKey CustomerType { get; private set; }
-        public VocabularyKey CVRNumber { get; private set; }
-        public VocabularyKey TaxCode { get; private set; }
-        public VocabularyKey EANNumber { get; private set; }
+        public VocabularyKey AccPhone { get; private set; }
+        public VocabularyKey AccountSource { get; private set; }
         public VocabularyKey AdrFloor { get; private set; }
         public VocabularyKey AdrHouseChar { get; private set; }
         public VocabularyKey AdrLine1 { get; private set; }
         public VocabularyKey AdrLine1Bill { get; private set; }
         public VocabularyKey AdrLine1Other { get; private set; }
+        public VocabularyKey AdrLine1Per1 { get; private set; }
+        public VocabularyKey AdrLine1Per2 { get; private set; }
         public VocabularyKey AdrLine1Ship { get; private set; }
         public VocabularyKey AdrLine2 { get; private set; }
         public VocabularyKey AdrLine2Other { get; private set; }
         public VocabularyKey AdrLine2Ship { get; private set; }
-        public VocabularyKey Birthdate { get; private set; }
-        public VocabularyKey CityCustomer { get; private set; }
-        public VocabularyKey AdrLine1Per1 { get; private set; }
-        public VocabularyKey AdrLine1Per2 { get; private set; }
         public VocabularyKey AdrLoc { get; private set; }
         public VocabularyKey AdrLocPer1 { get; private set; }
         public VocabularyKey AdrLocPer2 { get; private set; }
         public VocabularyKey AdrPlace { get; private set; }
         public VocabularyKey AdrPlacePer1 { get; private set; }
         public VocabularyKey AdrPlacePer2 { get; private set; }
-        public VocabularyKey AdrStreet { get; private set; }
         public VocabularyKey AdrStrNum { get; private set; }
+        public VocabularyKey AdrStreet { get; private set; }
         public VocabularyKey AdrSuite { get; private set; }
-        public VocabularyKey CityPer1 { get; private set; }
-        public VocabularyKey CityPer2 { get; private set; }
+        public VocabularyKey Birthdate { get; private set; }
+        public VocabularyKey COName { get; private set; }
         public VocabularyKey CONamePer1 { get; private set; }
         public VocabularyKey CONamePer2 { get; private set; }
+        public VocabularyKey CVRNumber { get; private set; }
+        public VocabularyKey City { get; private set; }
+        public VocabularyKey CityBill { get; private set; }
+        public VocabularyKey CityCustomer { get; private set; }
+        public VocabularyKey CityOther { get; private set; }
+        public VocabularyKey CityPer1 { get; private set; }
+        public VocabularyKey CityPer2 { get; private set; }
+        public VocabularyKey CityShip { get; private set; }
+        public VocabularyKey Country { get; private set; }
+        public VocabularyKey CountryBill { get; private set; }
+        public VocabularyKey CountryCode { get; private set; }
+        public VocabularyKey CountryCodeBill { get; private set; }
+        public VocabularyKey CountryCodeOther { get; private set; }
+        public VocabularyKey CountryCodeShip { get; private set; }
+        public VocabularyKey CountryOther { get; private set; }
+        public VocabularyKey CustomerNumber { get; private set; }
+        public VocabularyKey CustomerType { get; private set; }
+        public VocabularyKey EANNumber { get; private set; }
+        public VocabularyKey Email { get; private set; }
+        public VocabularyKey FirstName { get; private set; }
         public VocabularyKey FirstNamePer1 { get; private set; }
         public VocabularyKey FirstNamePer2 { get; private set; }
         public VocabularyKey ForeignAdr1Per1 { get; private set; }
@@ -211,17 +191,33 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey ForeignAdr5Per2 { get; private set; }
         public VocabularyKey FullNamePer1 { get; private set; }
         public VocabularyKey FullNamePer2 { get; private set; }
+        public VocabularyKey HomePhoneNr { get; private set; }
         public VocabularyKey LandPhoneNum { get; private set; }
+        public VocabularyKey LastName { get; private set; }
         public VocabularyKey LastNamePer1 { get; private set; }
         public VocabularyKey LastNamePer2 { get; private set; }
+        public VocabularyKey MobPhoneNr { get; private set; }
         public VocabularyKey MobPhoneNum { get; private set; }
         public VocabularyKey Name { get; private set; }
-        public VocabularyKey PhoneNumbOther { get; private set; }
         public VocabularyKey NamePer1 { get; private set; }
         public VocabularyKey NamePer2 { get; private set; }
+        public VocabularyKey PhoneNumbOther { get; private set; }
+        public VocabularyKey PostalCode { get; private set; }
+        public VocabularyKey PostalCodeBill { get; private set; }
+        public VocabularyKey PostalCodeOther { get; private set; }
         public VocabularyKey PostalCodePer1 { get; private set; }
         public VocabularyKey PostalCodePer2 { get; private set; }
-        public VocabularyKey AccountSource { get; private set; }
-        public VocabularyKey AccPhone { get; private set; }
+        public VocabularyKey PostalCodeShip { get; private set; }
+        public VocabularyKey State { get; private set; }
+        public VocabularyKey StateBill { get; private set; }
+        public VocabularyKey StateCode { get; private set; }
+        public VocabularyKey StateCodeBill { get; private set; }
+        public VocabularyKey StateCodeOther { get; private set; }
+        public VocabularyKey StateCodeShip { get; private set; }
+        public VocabularyKey StateOther { get; private set; }
+        public VocabularyKey StateShip { get; private set; }
+        public VocabularyKey StreetBill { get; private set; }
+        public VocabularyKey Title { get; private set; }
+        public VocabularyKey Website { get; private set; }
     }
 }

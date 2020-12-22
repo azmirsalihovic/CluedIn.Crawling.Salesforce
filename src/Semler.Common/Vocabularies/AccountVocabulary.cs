@@ -16,16 +16,16 @@ namespace Semler.Common.Vocabularies
             Grouping = EntityType.Infrastructure.User;
             AddGroup("Semler Account Details", group =>
             {
-                AccountId = group.Add(new VocabularyKey("AccountId", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("ID"));
-                AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("ID"));
+                AccountId = group.Add(new VocabularyKey("AccountId", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account ID"));
+                AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Number"));
                 AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
-                BillingAddress = group.Add(new VocabularyKey("BillingAddress", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Address"));
+                BillingAddress = group.Add(new VocabularyKey("BillingAddress", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Billing Address"));
                 BillingCity = group.Add(new VocabularyKey("BillingCity", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing City"));
                 BillingCountry = group.Add(new VocabularyKey("BillingCountry", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country"));
                 BillingCountryCode = group.Add(new VocabularyKey("BillingCountryCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country Code"));
                 BillingPostalCode = group.Add(new VocabularyKey("BillingPostalCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Postal Code"));
-                CustomerCity__c = group.Add(new VocabularyKey("CustomerCity__c", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
                 CVR__c = group.Add(new VocabularyKey("CVR__c", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("VAT Number"));
+                CustomerCity__c = group.Add(new VocabularyKey("CustomerCity__c", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
                 Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail Address"));
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
                 Id = group.Add(new VocabularyKey("Id", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("ID"));
@@ -61,6 +61,7 @@ namespace Semler.Common.Vocabularies
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
         }
+
         public VocabularyKey AccountId { get; private set; }
         public VocabularyKey AccountNumber { get; private set; }
         public VocabularyKey AccountSource { get; private set; }
@@ -69,8 +70,8 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey BillingCountry { get; private set; }
         public VocabularyKey BillingCountryCode { get; private set; }
         public VocabularyKey BillingPostalCode { get; private set; }
-        public VocabularyKey CustomerCity__c { get; private set; }
         public VocabularyKey CVR__c { get; private set; }
+        public VocabularyKey CustomerCity__c { get; private set; }
         public VocabularyKey Email { get; private set; }
         public VocabularyKey FirstName { get; private set; }
         public VocabularyKey Id { get; private set; }
