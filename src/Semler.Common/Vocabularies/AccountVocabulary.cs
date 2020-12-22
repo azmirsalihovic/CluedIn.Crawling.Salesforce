@@ -16,10 +16,10 @@ namespace Semler.Common.Vocabularies
             Grouping = EntityType.Infrastructure.User;
             AddGroup("Semler Account Details", group =>
             {
-                AccountId = group.Add(new VocabularyKey("AccountId", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("ID"));
-                AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("ID"));
+                AccountId = group.Add(new VocabularyKey("AccountId", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account ID"));
+                AccountNumber = group.Add(new VocabularyKey("AccountNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Number"));
                 AccountSource = group.Add(new VocabularyKey("AccountSource", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Source"));
-                BillingAddress = group.Add(new VocabularyKey("BillingAddress", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Address"));
+                BillingAddress = group.Add(new VocabularyKey("BillingAddress", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Account Billing Address"));
                 BillingCity = group.Add(new VocabularyKey("BillingCity", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing City"));
                 BillingCountry = group.Add(new VocabularyKey("BillingCountry", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country"));
                 BillingCountryCode = group.Add(new VocabularyKey("BillingCountryCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country Code"));

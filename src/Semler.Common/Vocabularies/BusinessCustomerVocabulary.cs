@@ -18,6 +18,10 @@ namespace Semler.Common.Vocabularies
                 AdrLine1Ship = group.Add(new VocabularyKey("AdrLine1Ship", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Shipping"));
                 AdrLine2Ship = group.Add(new VocabularyKey("AdrLine2Ship", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2 Shipping"));
                 AdrLine1Bill = group.Add(new VocabularyKey("AdrLine1Bill", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Billing"));
+                BillingCity = group.Add(new VocabularyKey("BillingCity", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Billing City"));
+                BillingCountry = group.Add(new VocabularyKey("BillingCountry", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country"));
+                BillingCountryCode = group.Add(new VocabularyKey("BillingCountryCode", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Country Code"));
+                BillingPostalCode = group.Add(new VocabularyKey("BillingPostalCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Billing Postal Code"));
                 CityBill = group.Add(new VocabularyKey("CityBill", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Billing"));
                 City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
                 CountryBill = group.Add(new VocabularyKey("CountryBill", VocabularyKeyDataType.GeographyCountry, VocabularyKeyVisibility.Visible).WithDisplayName("Country Billing"));
@@ -40,8 +44,6 @@ namespace Semler.Common.Vocabularies
                 Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Uri, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
 
                 //Geomatic
-                //City = group.Add(new VocabularyKey("City", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City"));
-                //Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
                 AdrFloor = group.Add(new VocabularyKey("AdrFloor", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Floor"));
                 AdrHouseChar = group.Add(new VocabularyKey("AdrHouseChar", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address House Character"));
                 AdrLine1 = group.Add(new VocabularyKey("AdrLine1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1"));
@@ -89,7 +91,6 @@ namespace Semler.Common.Vocabularies
 
                 //KUK
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
-                TaxCode = group.Add(new VocabularyKey("TaxCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Tax Code"));
             });
 
             //SalesForce (need review)
@@ -169,7 +170,6 @@ namespace Semler.Common.Vocabularies
             AddMapping(LastNamePer1, SemlerVocabularies.Customer.LastNamePer1);
             AddMapping(LastNamePer2, SemlerVocabularies.Customer.LastNamePer2);
             AddMapping(MobPhoneNum, SemlerVocabularies.Customer.MobPhoneNum);
-            AddMapping(Name, SemlerVocabularies.Customer.Name);
             AddMapping(NamePer1, SemlerVocabularies.Customer.NamePer1);
             AddMapping(NamePer2, SemlerVocabularies.Customer.NamePer2);
             AddMapping(PostalCode, SemlerVocabularies.Customer.PostalCode);
@@ -249,7 +249,6 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey StateCodeShip { get; private set; }
         public VocabularyKey StateShip { get; private set; }
         public VocabularyKey StreetBill { get; private set; }
-        public VocabularyKey TaxCode { get; private set; }
         public VocabularyKey Website { get; private set; }
     }
 }

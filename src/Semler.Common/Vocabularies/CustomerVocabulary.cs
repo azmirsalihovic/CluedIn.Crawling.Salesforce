@@ -105,7 +105,6 @@ namespace Semler.Common.Vocabularies
                 LastNamePer1 = group.Add(new VocabularyKey("LastNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name Person 1"));
                 LastNamePer2 = group.Add(new VocabularyKey("LastNamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name Person 2"));
                 MobPhoneNum = group.Add(new VocabularyKey("MobPhoneNum", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Mobile Phone Number"));
-                Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
                 NamePer1 = group.Add(new VocabularyKey("NamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name Person 1"));
                 NamePer2 = group.Add(new VocabularyKey("NamePer2", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name Person 2"));
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
@@ -113,12 +112,10 @@ namespace Semler.Common.Vocabularies
 
                 //KUK
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
-                TaxCode = group.Add(new VocabularyKey("TaxCode", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Tax Code"));
             });
 
             //
             //SalesForce (need review)
-            //AddMapping(TaxCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.TaxId);
             AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
             AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
             AddMapping(CVRNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInOrganization.VatNumber);
@@ -220,7 +217,6 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey StateOther { get; private set; }
         public VocabularyKey StateShip { get; private set; }
         public VocabularyKey StreetBill { get; private set; }
-        public VocabularyKey TaxCode { get; private set; }
         public VocabularyKey Title { get; private set; }
         public VocabularyKey Website { get; private set; }
     }
