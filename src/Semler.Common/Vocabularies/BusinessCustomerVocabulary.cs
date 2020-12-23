@@ -91,6 +91,9 @@ namespace Semler.Common.Vocabularies
 
                 //KUK
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
+
+
+                Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Email, VocabularyKeyVisibility.Visible).WithDisplayName("Email"));
             });
 
             //SalesForce (need review)
