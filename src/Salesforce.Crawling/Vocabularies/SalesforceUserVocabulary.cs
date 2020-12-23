@@ -98,7 +98,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
                 Photo                               = group.Add(new VocabularyKey("photo", VocabularyKeyDataType.Json, VocabularyKeyVisibility.Hidden));
                 ThanksReceived                      = group.Add(new VocabularyKey("thanksReceived", VocabularyKeyDataType.Boolean));
                 Title                               = group.Add(new VocabularyKey("title"));
-                Type                                = group.Add(new VocabularyKey("type"));
+                //Type                                = group.Add(new VocabularyKey("type"));
 
                 City                                = group.Add(new VocabularyKey("city", VocabularyKeyDataType.GeographyLocation));
                 CountryCode                         = group.Add(new VocabularyKey("countryCode", VocabularyKeyDataType.GeographyLocation));
@@ -106,7 +106,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
                 EmployeeNumber                      = group.Add(new VocabularyKey("employeeNumber", VocabularyKeyDataType.Number));
                 MiddleName                          = group.Add(new VocabularyKey("middleName"));
                 MobilePhone                         = group.Add(new VocabularyKey("mobilePhone", VocabularyKeyDataType.PhoneNumber));
-                Phone                               = group.Add(new VocabularyKey("phone", VocabularyKeyDataType.PhoneNumber));
+                //Phone                               = group.Add(new VocabularyKey("phone", VocabularyKeyDataType.PhoneNumber));
                 State                               = group.Add(new VocabularyKey("state", VocabularyKeyDataType.GeographyLocation));
                 Street                              = group.Add(new VocabularyKey("street", VocabularyKeyDataType.GeographyLocation));
                 UserName                            = group.Add(new VocabularyKey("userName"));
@@ -146,7 +146,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
             AddMapping(Title,             CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.JobTitle);
             AddMapping(MiddleName,        CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.MiddleName);
             AddMapping(MobilePhone,       CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.MobileNumber);
-            AddMapping(Phone,             CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
+            //AddMapping(Phone,             CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
             AddMapping(UserName,          CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.UserName);
             AddMapping(SystemModstamp,    CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInDates.ModifiedDate);
         }
@@ -223,7 +223,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
         public VocabularyKey Photo              { get; protected set; }
         public VocabularyKey ThanksReceived     { get; protected set; }
         public VocabularyKey Title              { get; protected set; }
-        public VocabularyKey Type               { get; protected set; }
+        //public VocabularyKey Type               { get; protected set; }
 
         public VocabularyKey City { get; protected set; }
         public VocabularyKey CountryCode { get; protected set; }
@@ -231,7 +231,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
         public VocabularyKey EmployeeNumber { get; protected set; }
         public VocabularyKey MiddleName { get; protected set; }
         public VocabularyKey MobilePhone { get; protected set; }
-        public VocabularyKey Phone { get; protected set; }
+        //public VocabularyKey Phone { get; protected set; }
         public VocabularyKey State { get; protected set; }
         public VocabularyKey Street { get; protected set; }
         public VocabularyKey UserName { get; protected set; }

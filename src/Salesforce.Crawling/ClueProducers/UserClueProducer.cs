@@ -183,7 +183,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             data.Properties[SalesforceVocabulary.User.MiddleName]                       = value.MiddleName;
             data.Properties[SalesforceVocabulary.User.MobilePhone]                      = value.MobilePhone;
             data.Properties[SalesforceVocabulary.User.OfflineTrialExpirationDate]       = DateUtilities.GetFormattedDateString(value.OfflineTrialExpirationDate);
-            data.Properties[SalesforceVocabulary.User.Phone]                            = value.Phone;
+            //data.Properties[SalesforceVocabulary.User.Phone]                            = value.Phone;
             data.Properties[SalesforceVocabulary.User.PortalRole]                       = value.PortalRole;
             data.Properties[SalesforceVocabulary.User.PostalCode]                       = value.PostalCode;
 
