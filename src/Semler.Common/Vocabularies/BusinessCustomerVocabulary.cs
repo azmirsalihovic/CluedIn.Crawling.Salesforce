@@ -7,12 +7,12 @@ namespace Semler.Common.Vocabularies
     {
         public BusinessCustomerVocabulary()
         {
-            VocabularyName = "Semler Organization";
-            KeyPrefix = "semler.organization";
+            VocabularyName = "Semler Business Customer";
+            KeyPrefix = "semler.businesscustomer";
             KeySeparator = ".";
             Grouping = EntityType.Organization;
 
-            AddGroup("Semler Organization Details", group =>
+            AddGroup("Semler Business Customer Details", group =>
             {
                 //SalesForce
                 AdrLine1Ship = group.Add(new VocabularyKey("AdrLine1Ship", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Shipping"));

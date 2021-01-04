@@ -7,12 +7,12 @@ namespace Semler.Common.Vocabularies
     {
         public PrivateCustomerVocabulary()
         {
-            VocabularyName = "Semler User";
-            KeyPrefix = "semler.user";
+            VocabularyName = "Semler Private Customer";
+            KeyPrefix = "semler.privatecustomer";
             KeySeparator = ".";
             Grouping = EntityType.Infrastructure.User;
 
-            AddGroup("Semler User Details", group =>
+            AddGroup("Semler Private Customer Details", group =>
             {
                 //SalesForce
                 AccPhone = group.Add(new VocabularyKey("AccPhone", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Account Phone"));
