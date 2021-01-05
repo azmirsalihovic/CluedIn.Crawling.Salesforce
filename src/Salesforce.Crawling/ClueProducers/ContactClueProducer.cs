@@ -15,6 +15,7 @@ using CluedIn.Crawling.Salesforce.Core;
 using CluedIn.Crawling.Factories;
 using CluedIn.Crawling.Salesforce.Core.Models;
 using CluedIn.Crawling.Salesforce.Vocabularies;
+using System.Globalization;
 
 namespace CluedIn.Crawling.Salesforce.Subjects
 {
@@ -32,10 +33,13 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             var clue = _factory.Create(EntityType.Infrastructure.Contact, value.ID, id);
             var data = clue.Data.EntityData;
 
+            // Creates a TextInfo based on the "da-DK" culture.
+            TextInfo myTI = new CultureInfo("da-DK", false).TextInfo;
+
             if (value.Name != null)
             {
                 data.Name = value.Name;
-                data.DisplayName = value.Name;
+                data.DisplayName = myTI.ToTitleCase(myTI.ToLower(value.Name));
                 data.Aliases.Add(value.Name);
             }
 
