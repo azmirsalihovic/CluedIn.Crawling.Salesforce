@@ -76,7 +76,9 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 }
                 else
                 {
-                    //qry = string.Format("SELECT {0} FROM " + query + " WHERE IsPersonAccount = {1}", GetObjectFieldsSelectList(typeName), "true"); // Query for testing Users
+                    //qry = string.Format("SELECT {0} FROM " + query + " WHERE id = {1}", GetObjectFieldsSelectList(typeName), "'0012o00002aYKoYAAW'"); // Query for testing Users
+                    //qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), "'0121t000000Dy89AAC'");
+                    //qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId != '0121t000000Dy89AAC' AND RecordTypeId != '0122o0000007pMrAAI'", GetObjectFieldsSelectList(typeName));
                     qry = string.Format("SELECT {0} FROM " + query, GetObjectFieldsSelectList(typeName));
                 }
 
