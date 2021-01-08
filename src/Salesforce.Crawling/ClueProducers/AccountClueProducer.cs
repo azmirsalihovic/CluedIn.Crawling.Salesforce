@@ -64,10 +64,10 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                 data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.Cvr, value.CVR__c));
             }
 
-            if (!string.IsNullOrWhiteSpace(value.KUKCode__c) && !isPerson)
-            {
-                data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.KUK, value.KUKCode__c));
-            }
+            //if (!string.IsNullOrWhiteSpace(value.KUKCode__c) && !isPerson)
+            //{
+            //    data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.KUK, value.KUKCode__c));
+            //}
 
             if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c) && !isPerson)
             {
