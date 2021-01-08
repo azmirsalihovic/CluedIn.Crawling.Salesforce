@@ -59,14 +59,9 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             var data = clue.Data.EntityData;
 
             //Create identifiers
-            if (!string.IsNullOrWhiteSpace(value.CVR__c) && !isPerson)
-            {
-                data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.Cvr, value.CVR__c));
-            }
-
-            //if (!string.IsNullOrWhiteSpace(value.KUKCode__c) && !isPerson)
+            //if (!string.IsNullOrWhiteSpace(value.CVR__c) && !isPerson)
             //{
-            //    data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.KUK, value.KUKCode__c));
+            //    data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.Cvr, value.CVR__c));
             //}
 
             if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c) && !isPerson)
