@@ -8,6 +8,7 @@
     <NoWarn>;NU5105</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CluedIn.Core"/>
+    <PackageReference Include="CluedIn.Core" />
+    <PackageReference Include="CluedIn.Processing" />
   </ItemGroup>
 </Project>
