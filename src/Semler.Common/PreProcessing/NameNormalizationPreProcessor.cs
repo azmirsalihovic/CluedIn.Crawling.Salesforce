@@ -5,9 +5,9 @@ using CluedIn.Core;
 using CluedIn.Core.Data;
 using CluedIn.Core.Data.Parts;
 
-namespace CluedIn.Semler.Common.PreProcessing
+namespace Semler.Common.PreProcessing
 {
-    public class NameNormalizationPreProcessor : Processing.Processors.PreProcessing.IPreProcessor
+    public class NameNormalizationPreProcessor : CluedIn.Processing.Processors.PreProcessing.IPreProcessor
     {
         public bool Accepts(ExecutionContext context, IEnumerable<IEntityCode> codes)
         {
