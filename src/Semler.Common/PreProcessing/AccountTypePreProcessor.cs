@@ -9,7 +9,6 @@ namespace Semler.Common.PreProcessing
 {
     public class AccountTypePreProcessor : CluedIn.Processing.Processors.PreProcessing.IPreProcessor
     {
-        private IEnumerable<IEntityCode> codes;
 
         public bool Accepts(ExecutionContext context, IEnumerable<IEntityCode> codes)
         {
@@ -21,16 +20,16 @@ namespace Semler.Common.PreProcessing
             if (metadata != null)
             {
                 //then in the process method what we'll have to do is get out the kuk entity
-                var entity = context.PrimaryDataStore.GetByEntityCode(context, (IEntityCode)codes);
+                var entity = context.PrimaryDataStore.GetByEntityCode(context, metadata.OriginEntityCode);
 
                 //then we can take out individual properties with something like this
-                var input = entity.Properties.GetValues("kuk.account.Customertype");
+                var cutomerid = entity.Properties.GetValues("kuk.RetrieveCustomer.cutomerid");
 
                 //Dennises Exmple (simplified)
-                var entityIsPerson = !string.IsNullOrEmpty(input.ToString()) && new string[] { "1", "9", "a", "e" }.Contains(input.ToString().ToLower());
+                //var entityIsPerson = !string.IsNullOrEmpty(input.ToString()) && new string[] { "1", "9", "a", "e" }.Contains(input.ToString().ToLower());
 
                 //then based on the value of that kuk property we set the entity type, I think you can just do this, or whatever type it needs to be
-                metadata.EntityType = entityIsPerson ? EntityType.Infrastructure.User : EntityType.Organization;
+                metadata.EntityType = "";//entityIsPerson ? EntityType.Infrastructure.User : EntityType.Organization;
 
                 /* Dennises Example from KUK
                 var clue = _factory.Create(EntityType.Organization, input.Customerid, id);
