@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using CluedIn.Core;
 using CluedIn.Core.Data;
@@ -18,7 +19,9 @@ namespace Semler.Common.PreProcessing
         {
             if (metadata != null)
             {
-                metadata.DisplayName = metadata.DisplayName.ToLower().ToTitleCase();
+                TextInfo myTI = new CultureInfo("da-DK", false).TextInfo;
+                metadata.DisplayName = myTI.ToTitleCase(myTI.ToLower(metadata.DisplayName));
+                metadata.Name = myTI.ToTitleCase(myTI.ToLower(metadata.Name));
             }
         }
     }
