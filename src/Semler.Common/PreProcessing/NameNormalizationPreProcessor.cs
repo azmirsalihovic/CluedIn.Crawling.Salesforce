@@ -20,8 +20,10 @@ namespace Semler.Common.PreProcessing
             if (metadata != null)
             {
                 TextInfo myTI = new CultureInfo("da-DK", false).TextInfo;
-                metadata.DisplayName = myTI.ToTitleCase(myTI.ToLower(metadata.DisplayName));
-                metadata.Name = myTI.ToTitleCase(myTI.ToLower(metadata.Name));
+                if (!string.IsNullOrWhiteSpace(metadata.DisplayName))
+                    metadata.DisplayName = myTI.ToTitleCase(myTI.ToLower(metadata.DisplayName));
+                if (!string.IsNullOrWhiteSpace(metadata.Name))
+                    metadata.Name = myTI.ToTitleCase(myTI.ToLower(metadata.Name));
             }
         }
     }
