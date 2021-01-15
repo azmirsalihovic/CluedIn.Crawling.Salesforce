@@ -1,43 +1,48 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using CluedIn.Core;
-//using CluedIn.Core.Data;
-//using CluedIn.Core.Data.Parts;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CluedIn.Core;
+using CluedIn.Core.Data;
+using CluedIn.Core.Data.Parts;
 
-//namespace Semler.Common.PreProcessing
-//{
-//    public class AccountTypePreProcessor : CluedIn.Processing.Processors.PreProcessing.IPreProcessor
-//    {
+namespace Semler.Common.PreProcessing
+{
+    public class AccountTypePreProcessor : CluedIn.Processing.Processors.PreProcessing.IPreProcessor
+    {
 
-//        public bool Accepts(ExecutionContext context, IEnumerable<IEntityCode> codes)
-//        {
-//            return true;
-//        }
+        public bool Accepts(ExecutionContext context, IEnumerable<IEntityCode> codes)
+        {
+            return codes.Any(x => x.Origin.Code == "Salesforce");
+        }
 
-//        public void Process(ExecutionContext context, IEntityMetadataPart metadata, IDataPart data)
-//        {
-//            if (metadata != null)
-//            {
-//                //then in the process method what we'll have to do is get out the kuk entity
-//                var entity = context.PrimaryDataStore.GetByEntityCode(context, metadata.OriginEntityCode);
+        public void Process(ExecutionContext context, IEntityMetadataPart metadata, IDataPart data)
+        {
+            if (metadata != null)
+            {
+                var kukCodes = metadata.Codes.Where(x => x.ToString().Contains("KUK"));
+                IEntityCode code = null;
+                if (kukCodes.Any())
+                {
+                    code = kukCodes.First();
 
-//                //then we can take out individual properties with something like this
-//                var cutomerid = entity.Properties.GetValues("kuk.RetrieveCustomer.cutomerid");
+                    if (metadata.EntityType.Is(EntityType.Organization))
+                    {
+                        code = new EntityCode(EntityType.Infrastructure.User, code.Origin, code.Value);
+                    }
+                    else if (metadata.EntityType.Is(EntityType.Infrastructure.User))
+                    {
+                        code = new EntityCode(EntityType.Organization, code.Origin, code.Value);
+                    }
 
-//                //Dennises Exmple (simplified)
-//                //var entityIsPerson = !string.IsNullOrEmpty(input.ToString()) && new string[] { "1", "9", "a", "e" }.Contains(input.ToString().ToLower());
+                    var entity = context.PrimaryDataStore.GetByEntityCode(context, code);
 
-//                //then based on the value of that kuk property we set the entity type, I think you can just do this, or whatever type it needs to be
-//                metadata.EntityType = "";//entityIsPerson ? EntityType.Infrastructure.User : EntityType.Organization;
-
-//                /* Dennises Example from KUK
-//                var clue = _factory.Create(EntityType.Organization, input.Customerid, id);
-//                var entityIsPerson = !string.IsNullOrEmpty(input?.Customertype) && (new string[] { "1", "9", "a", "e" }.Contains(input.Customertype.ToLower()));
-//                if (entityIsPerson)
-//                    clue = _factory.Create(EntityType.Infrastructure.User, input.Customerid, id);
-//                */
-//            }
-//        }
-//    }
-//}
+                    if (entity != null)
+                    {
+                        metadata.EntityType = entity.EntityType;
+                        metadata.Codes.Add(code);
+                    }
+                }
+            }
+        }
+    }
+}
