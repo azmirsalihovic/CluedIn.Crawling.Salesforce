@@ -15,7 +15,7 @@ using CluedIn.Crawling.Salesforce.Core;
 using CluedIn.Crawling.Factories;
 using CluedIn.Crawling.Salesforce.Core.Models;
 using CluedIn.Crawling.Salesforce.Vocabularies;
-using System.Globalization;
+using CluedIn.Crawling.Helpers;
 
 namespace CluedIn.Crawling.Salesforce.Subjects
 {
@@ -33,26 +33,14 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             var clue = _factory.Create(EntityType.Infrastructure.Contact, value.ID, id);
             var data = clue.Data.EntityData;
 
-            // Creates a TextInfo based on the "da-DK" culture.
-            TextInfo myTI = new CultureInfo("da-DK", false).TextInfo;
-
-            if (value.Name != null)
+            if (!string.IsNullOrEmpty(value.Name))
             {
                 data.Name = value.Name;
-                data.DisplayName = myTI.ToTitleCase(myTI.ToLower(value.Name));
+                data.DisplayName = value.Name;
                 data.Aliases.Add(value.Name);
             }
 
-            if (value.ID != null) data.Properties[SalesforceVocabulary.Contact.ID] = value.ID;
-
-            if (value.Description != null) data.Description = value.Description;
-
-            if (value.AccountId != null)
-            {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Organization, EntityEdgeType.OwnedBy, value, value.AccountId);
-            }
-
-            if (value.CreatedDate != null)
+            if (!string.IsNullOrEmpty(value.CreatedDate))
             {
                 DateTimeOffset createdDate;
                 if (DateTimeOffset.TryParse(value.CreatedDate, out createdDate))
@@ -61,7 +49,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                 }
             }
 
-            if (value.LastModifiedDate != null)
+            if (!string.IsNullOrEmpty(value.LastModifiedDate))
             {
                 DateTimeOffset modifiedDate;
                 if (DateTimeOffset.TryParse(value.LastModifiedDate, out modifiedDate))
@@ -69,75 +57,92 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                     data.ModifiedDate = modifiedDate;
                 }
             }
-            if (value.CreatedById != null)
+
+            //Create Edges
+            if (!string.IsNullOrEmpty(value.AccountId))
+            {
+                _factory.CreateOutgoingEntityReference(clue, EntityType.Organization, EntityEdgeType.OwnedBy, value, value.AccountId);
+            }
+
+            if (!string.IsNullOrEmpty(value.CreatedById))
             {
                 _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.CreatedById);
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.CreatedById));
                 data.Authors.Add(createdBy);
             }
 
-            if (value.LastModifiedById != null)
+            if (!string.IsNullOrEmpty(value.LastModifiedById))
             {
                 _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ModifiedBy, value, value.LastModifiedById);
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.LastModifiedById));
                 data.Authors.Add(createdBy);
             }
 
-            if (value.SystemModstamp != null) data.Properties[SalesforceVocabulary.Contact.SystemModstamp] = value.SystemModstamp;
-            if (value.AgeC != null) data.Properties[SalesforceVocabulary.Contact.AgeC] = value.AgeC;
-            if (value.BouncedC != null) data.Properties[SalesforceVocabulary.Contact.BouncedC] = value.BouncedC;
-            if (value.BrandC != null) data.Properties[SalesforceVocabulary.Contact.BrandC] = value.BrandC;
-            if (value.Brand2C != null) data.Properties[SalesforceVocabulary.Contact.Brand2C] = value.Brand2C;
-            if (value.BuyingTimeframeC != null) data.Properties[SalesforceVocabulary.Contact.BuyingTimeframeC] = value.BuyingTimeframeC;
-            if (value.CompanySizeC != null) data.Properties[SalesforceVocabulary.Contact.CompanySizeC] = value.CompanySizeC;
-            if (value.ContactRoleC != null) data.Properties[SalesforceVocabulary.Contact.ContactRoleC] = value.ContactRoleC;
-            if (value.CurrentCarBrandC != null) data.Properties[SalesforceVocabulary.Contact.CurrentCarBrandC] = value.CurrentCarBrandC;
-            if (value.HashedEmailC != null) data.Properties[SalesforceVocabulary.Contact.HashedEmailC] = value.HashedEmailC;
-            if (value.IdEmailC != null) data.Properties[SalesforceVocabulary.Contact.IdEmailC] = value.IdEmailC;
-            if (value.IdentityKitIdC != null) data.Properties[SalesforceVocabulary.Contact.IdentityKitIdC] = value.IdentityKitIdC;
-            if (value.IdNgC != null) data.Properties[SalesforceVocabulary.Contact.IdNgC] = value.IdNgC;
-            if (value.IndustryC != null) data.Properties[SalesforceVocabulary.Contact.IndustryC] = value.IndustryC;
-            if (value.InteractionScoreC != null) data.Properties[SalesforceVocabulary.Contact.InteractionScoreC] = value.InteractionScoreC;
-            if (value.InteractionScoreCalculatedC != null) data.Properties[SalesforceVocabulary.Contact.InteractionScoreCalculatedC] = value.InteractionScoreCalculatedC;
-            if (value.InteractionScoreLastUpdatedC != null) data.Properties[SalesforceVocabulary.Contact.InteractionScoreLastUpdatedC] = value.InteractionScoreLastUpdatedC;
-            if (value.IsActiveUserC != null) data.Properties[SalesforceVocabulary.Contact.IsActiveUserC] = value.IsActiveUserC;
-            if (value.IsMarketingContactC != null) data.Properties[SalesforceVocabulary.Contact.IsMarketingContactC] = value.IsMarketingContactC;
-            if (value.IsPartnerC != null) data.Properties[SalesforceVocabulary.Contact.IsPartnerC] = value.IsPartnerC;
-            if (value.McApiErrorC != null) data.Properties[SalesforceVocabulary.Contact.McApiErrorC] = value.McApiErrorC;
-            if (value.McApiStatusC != null) data.Properties[SalesforceVocabulary.Contact.McApiStatusC] = value.McApiStatusC;
-            if (value.NumberOfCarsC != null) data.Properties[SalesforceVocabulary.Contact.NumberOfCarsC] = value.NumberOfCarsC;
-            if (value.PreferedOwnershipC != null) data.Properties[SalesforceVocabulary.Contact.PreferedOwnershipC] = value.PreferedOwnershipC;
-            if (value.ResidenseRegionC != null) data.Properties[SalesforceVocabulary.Contact.ResidenseRegionC] = value.ResidenseRegionC;
-            if (value.IsDeleted != null) data.Properties[SalesforceVocabulary.Contact.IsDeleted] = value.IsDeleted;
-            if (value.RecordTypeId != null) data.Properties[SalesforceVocabulary.Contact.RecordTypeId] = value.RecordTypeId;
-            if (value.AssistantName != null) data.Properties[SalesforceVocabulary.Contact.AssistantName] = value.AssistantName;
-            if (value.AssistantPhone != null)
+            data.Properties[SalesforceVocabulary.Contact.AccountId] = value.AccountId.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.CreatedById] = value.CreatedById.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.LastModifiedById] = value.LastModifiedById.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.ID] = value.ID.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.Description] = value.Description.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.SystemModstamp] = value.SystemModstamp.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.AgeC] = value.AgeC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.BouncedC] = value.BouncedC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.BrandC] = value.BrandC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.Brand2C] = value.Brand2C.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.BuyingTimeframeC] = value.BuyingTimeframeC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.CompanySizeC] = value.CompanySizeC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.ContactRoleC] = value.ContactRoleC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.CurrentCarBrandC] = value.CurrentCarBrandC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.HashedEmailC] = value.HashedEmailC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IdEmailC] = value.IdEmailC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IdentityKitIdC] = value.IdentityKitIdC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IdNgC] = value.IdNgC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IndustryC] = value.IndustryC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.InteractionScoreC] = value.InteractionScoreC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.InteractionScoreCalculatedC] = value.InteractionScoreCalculatedC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.InteractionScoreLastUpdatedC] = value.InteractionScoreLastUpdatedC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsActiveUserC] = value.IsActiveUserC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsMarketingContactC] = value.IsMarketingContactC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsPartnerC] = value.IsPartnerC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.McApiErrorC] = value.McApiErrorC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.McApiStatusC] = value.McApiStatusC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.NumberOfCarsC] = value.NumberOfCarsC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.PreferedOwnershipC] = value.PreferedOwnershipC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.ResidenseRegionC] = value.ResidenseRegionC.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsDeleted] = value.IsDeleted.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.RecordTypeId] = value.RecordTypeId.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.AssistantName] = value.AssistantName.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.FirstName] = value.FirstName.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.Birthdate] = value.Birthdate.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.Department] = value.Department.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.DoNotCall] = value.DoNotCall.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsEmailBounced] = value.IsEmailBounced.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.IsPersonAccount] = value.IsPersonAccount.PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.AssistantPhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.AssistantPhone] = value.AssistantPhone;
                 data.Aliases.Add(value.AssistantPhone);
             }
-            if (value.Birthdate != null) data.Properties[SalesforceVocabulary.Contact.Birthdate] = value.Birthdate;
-            if (value.Department != null) data.Properties[SalesforceVocabulary.Contact.Department] = value.Department;
-            if (value.DoNotCall != null) data.Properties[SalesforceVocabulary.Contact.DoNotCall] = value.DoNotCall;
-            if (value.Email != null)
+
+            if (!string.IsNullOrEmpty(value.Email))
             {
                 data.Properties[SalesforceVocabulary.Contact.Email] = value.Email;
                 data.Aliases.Add(value.Email);
             }
-            if (value.Fax != null)
+
+            if (!string.IsNullOrEmpty(value.Fax))
             {
                 data.Properties[SalesforceVocabulary.Contact.Fax] = value.Fax;
                 data.Aliases.Add(value.Fax);
             }
-            if (value.FirstName != null) data.Properties[SalesforceVocabulary.Contact.FirstName] = value.FirstName;
-            if (value.HomePhone != null)
+
+            if (!string.IsNullOrEmpty(value.HomePhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.HomePhone] = value.HomePhone;
                 data.Aliases.Add(value.HomePhone);
             }
-            if (value.IsEmailBounced != null) data.Properties[SalesforceVocabulary.Contact.IsEmailBounced] = value.IsEmailBounced;
-            if (value.IsPersonAccount != null) data.Properties[SalesforceVocabulary.Contact.IsPersonAccount] = value.IsPersonAccount;
-            if (value.LastActivityDate != null)
+
+            if (!string.IsNullOrEmpty(value.LastActivityDate))
             {
                 DateTime modifiedDateTime;
                 if (DateTime.TryParse(value.LastActivityDate, out modifiedDateTime))
@@ -146,61 +151,71 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                 }
             }
 
-            if (value.LastCURequestDate != null) data.Properties[SalesforceVocabulary.Contact.LastCURequestDate] = DateUtilities.GetFormattedDateString(value.LastCURequestDate);
-            if (value.LastCUUpdateDate != null) data.Properties[SalesforceVocabulary.Contact.LastCUUpdateDate] = DateUtilities.GetFormattedDateString(value.LastCUUpdateDate);
-            if (value.LastName != null) data.Properties[SalesforceVocabulary.Contact.LastName] = value.LastName;
-            if (value.LastReferencedDate != null) data.Properties[SalesforceVocabulary.Contact.LastReferencedDate] = DateUtilities.GetFormattedDateString(value.LastReferencedDate);
-            if (value.LastViewedDate != null) data.Properties[SalesforceVocabulary.Contact.LastViewedDate] = DateUtilities.GetFormattedDateString(value.LastViewedDate);
-            if (value.LeadSource != null)
+            data.Properties[SalesforceVocabulary.Contact.LastCURequestDate] = DateUtilities.GetFormattedDateString(value.LastCURequestDate).PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.LastCUUpdateDate] = DateUtilities.GetFormattedDateString(value.LastCUUpdateDate).PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.LastName] = value.LastName.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.LastReferencedDate] = DateUtilities.GetFormattedDateString(value.LastReferencedDate).PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.LastViewedDate] = DateUtilities.GetFormattedDateString(value.LastViewedDate).PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.LeadSource))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Tag, EntityEdgeType.For, value, value.LeadSource);
-                data.Properties[SalesforceVocabulary.Contact.LeadSource] = value.LeadSource;
+                //_factory.CreateOutgoingEntityReference(clue, EntityType.Tag, EntityEdgeType.For, value, value.LeadSource);
+                data.Properties[SalesforceVocabulary.Contact.LeadSource] = value.LeadSource.PrintIfAvailable();
             }
 
-            if (value.MailingAddress != null) data.Properties[SalesforceVocabulary.Contact.MailingAddress] = value.MailingAddress;
-            if (value.MailingCity != null) data.Properties[SalesforceVocabulary.Contact.MailingCity] = value.MailingCity;
-            if (value.MailingCountry != null) data.Properties[SalesforceVocabulary.Contact.MailingCountry] = value.MailingCountry;
-            if (value.MailingCountryCode != null) data.Properties[SalesforceVocabulary.Contact.MailingCountryCode] = value.MailingCountryCode;
-            if (value.MailingGeocodeAccuracy != null) data.Properties[SalesforceVocabulary.Contact.MailingGeocodeAccuracy] = value.MailingGeocodeAccuracy;
-            if (value.MailingLatitude != null) data.Properties[SalesforceVocabulary.Contact.MailingLatitude] = value.MailingLatitude;
-            if (value.MailingLongitude != null) data.Properties[SalesforceVocabulary.Contact.MailingLongitude] = value.MailingLongitude;
-            if (value.MailingPostalCode != null) data.Properties[SalesforceVocabulary.Contact.MailingPostalCode] = value.MailingPostalCode;
-            if (value.MailingState != null) data.Properties[SalesforceVocabulary.Contact.MailingState] = value.MailingState;
-            if (value.MailingStateCode != null) data.Properties[SalesforceVocabulary.Contact.MailingStateCode] = value.MailingStateCode;
-            if (value.MailingStreet != null) data.Properties[SalesforceVocabulary.Contact.MailingStreet] = value.MailingStreet;
-            if (value.MasterRecordId != null) data.Properties[SalesforceVocabulary.Contact.MasterRecordId] = value.MasterRecordId;
-            if (value.MobilePhone != null)
+            data.Properties[SalesforceVocabulary.Contact.MailingAddress] = value.MailingAddress.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingCity] = value.MailingCity.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingCountry] = value.MailingCountry.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingCountryCode] = value.MailingCountryCode.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingGeocodeAccuracy] = value.MailingGeocodeAccuracy.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingLatitude] = value.MailingLatitude.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingLongitude] = value.MailingLongitude.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingPostalCode] = value.MailingPostalCode.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingState] = value.MailingState.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingStateCode] = value.MailingStateCode.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MailingStreet] = value.MailingStreet.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.MasterRecordId] = value.MasterRecordId.PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.MobilePhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.MobilePhone] = value.MobilePhone;
                 data.Aliases.Add(value.MobilePhone);
             }
-            if (value.OtherAddress != null) data.Properties[SalesforceVocabulary.Contact.OtherAddress] = value.OtherAddress;
-            if (value.OtherCity != null) data.Properties[SalesforceVocabulary.Contact.OtherCity] = value.OtherCity;
-            if (value.OtherCountry != null) data.Properties[SalesforceVocabulary.Contact.OtherCountry] = value.OtherCountry;
-            if (value.OtherCountryCode != null) data.Properties[SalesforceVocabulary.Contact.OtherCountryCode] = value.OtherCountryCode;
-            if (value.OtherPhone != null)
+
+            data.Properties[SalesforceVocabulary.Contact.OtherAddress] = value.OtherAddress.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherCity] = value.OtherCity.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherCountry] = value.OtherCountry.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherCountryCode] = value.OtherCountryCode.PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.OtherPhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.OtherPhone] = value.OtherPhone;
                 data.Aliases.Add(value.OtherPhone);
             }
-            if (value.OtherPostalCode != null) data.Properties[SalesforceVocabulary.Contact.OtherPostalCode] = value.OtherPostalCode;
-            if (value.OtherState != null) data.Properties[SalesforceVocabulary.Contact.OtherState] = value.OtherState;
-            if (value.OtherStateCode != null) data.Properties[SalesforceVocabulary.Contact.OtherStateCode] = value.OtherStateCode;
-            if (value.OtherStreet != null) data.Properties[SalesforceVocabulary.Contact.OtherStreet] = value.OtherStreet;
-            if (value.OwnerId != null)
+
+            data.Properties[SalesforceVocabulary.Contact.OtherPostalCode] = value.OtherPostalCode.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherState] = value.OtherState.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherStateCode] = value.OtherStateCode.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.OtherStreet] = value.OtherStreet.PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.OwnerId))
             {
                 if (value.OwnerId != value.ID)
-                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.OwnerId);
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.OwnedBy, value, value.OwnerId);
+                data.Properties[SalesforceVocabulary.Contact.OwnerId] = value.OwnerId;
 
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.OwnerId));
                 data.Authors.Add(createdBy);
             }
-            if (value.Phone != null)
+
+            if (!string.IsNullOrEmpty(value.Phone))
             {
                 data.Properties[SalesforceVocabulary.Contact.Phone] = value.Phone;
                 data.Aliases.Add(value.Phone);
             }
-            if (value.PhotoUrl != null) data.Properties[SalesforceVocabulary.Contact.PhotoUrl] = value.PhotoUrl;
+
+            data.Properties[SalesforceVocabulary.Contact.PhotoUrl] = value.PhotoUrl.PrintIfAvailable();
+
             //if (value.PhotoUrl != null)
             //{
             //    if (value.PhotoUrl != null)
@@ -239,14 +254,14 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             //    }
             //}
 
-            if (value.ReportsToId != null)
+            if (!string.IsNullOrEmpty(value.ReportsToId))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ManagedBy,
-                value, value.ReportsToId);
+                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ManagedBy,value, value.ReportsToId);
+                data.Properties[SalesforceVocabulary.Contact.ReportsToId] = value.ReportsToId.PrintIfAvailable();
             }
 
-            if (value.Salutation != null) data.Properties[SalesforceVocabulary.Contact.Salutation] = value.Salutation;
-            if (value.Title != null) data.Properties[SalesforceVocabulary.Contact.Title] = value.Title;
+            data.Properties[SalesforceVocabulary.Contact.Salutation] = value.Salutation.PrintIfAvailable();
+            data.Properties[SalesforceVocabulary.Contact.Title] = value.Title.PrintIfAvailable();
 
             _factory.CreateEntityRootReference(clue, EntityEdgeType.ManagedIn);
 
