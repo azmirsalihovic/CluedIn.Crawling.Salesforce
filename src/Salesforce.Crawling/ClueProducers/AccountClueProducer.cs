@@ -63,13 +63,12 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c) && !isPerson)
             {
                 data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.KUK, value.KUKCustomerID__c));
-            }
+            } // Check if we want to filter on isPerson or create it for all clues
 
             if (!string.IsNullOrEmpty(value.Name))
             {
                 data.Name = value.Name;
                 data.DisplayName = value.Name;
-                data.Aliases.Add(value.Name);
             }
 
             if (!string.IsNullOrEmpty(value.CreatedDate))
@@ -97,11 +96,11 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             if (!string.IsNullOrEmpty(value.CreatedById))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.CreatedById);
+                if(value.CreatedById != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.CreatedById);
+
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.CreatedById));
                 data.Authors.Add(createdBy);
-
-                data.LastChangedBy = createdBy;
             }
 
             if (!string.IsNullOrEmpty(value.KUKCode__c) && isOrganization)
@@ -120,18 +119,19 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             if (!string.IsNullOrEmpty(value.OwnerId))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.OwnedBy, value, value.OwnerId);
+                if (value.OwnerId != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.OwnedBy, value, value.OwnerId);
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.OwnerId));
                 data.Authors.Add(createdBy);
             }
 
-            if (!string.IsNullOrEmpty(value.ParentId) && isOrganization)
+            if (!string.IsNullOrEmpty(value.ParentId) && isOrganization && value.CreatedById != value.ID)
             {
                 // TODO: This is wrong! ParentId refers to the parent account
                 _factory.CreateOutgoingEntityReference(clue, EntityType.Organization, EntityEdgeType.Parent, value, value.ParentId);
             }
 
-            //if (!string.IsNullOrEmpty(value.Ownership))
+            //if (!string.IsNullOrEmpty(value.Ownership) && value.Ownership != value.ID)
             //{
             //    _factory.CreateOutgoingEntityReference(clue, EntityType.Tag, EntityEdgeType.For, value, value.Ownership);
             //}

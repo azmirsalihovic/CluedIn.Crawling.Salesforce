@@ -59,21 +59,25 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             }
 
             //Create Edges
-            if (!string.IsNullOrEmpty(value.AccountId))
+            if (!string.IsNullOrEmpty(value.AccountId) && value.AccountId != value.ID)
             {
                 _factory.CreateOutgoingEntityReference(clue, EntityType.Organization, EntityEdgeType.OwnedBy, value, value.AccountId);
             }
 
             if (!string.IsNullOrEmpty(value.CreatedById))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.CreatedById);
+                if (value.CreatedById != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.CreatedBy, value, value.CreatedById);
+
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.CreatedById));
                 data.Authors.Add(createdBy);
             }
 
             if (!string.IsNullOrEmpty(value.LastModifiedById))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ModifiedBy, value, value.LastModifiedById);
+                if (value.LastModifiedById != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ModifiedBy, value, value.LastModifiedById);
+
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.LastModifiedById));
                 data.Authors.Add(createdBy);
             }
@@ -202,8 +206,8 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             {
                 if (value.OwnerId != value.ID)
                     _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.OwnedBy, value, value.OwnerId);
-                data.Properties[SalesforceVocabulary.Contact.OwnerId] = value.OwnerId;
 
+                data.Properties[SalesforceVocabulary.Contact.OwnerId] = value.OwnerId.PrintIfAvailable();
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.OwnerId));
                 data.Authors.Add(createdBy);
             }
@@ -256,7 +260,9 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             if (!string.IsNullOrEmpty(value.ReportsToId))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ManagedBy,value, value.ReportsToId);
+                if (value.ReportsToId != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ManagedBy,value, value.ReportsToId);
+
                 data.Properties[SalesforceVocabulary.Contact.ReportsToId] = value.ReportsToId.PrintIfAvailable();
             }
 
