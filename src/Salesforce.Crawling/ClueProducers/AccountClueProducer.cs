@@ -125,7 +125,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                 data.Authors.Add(createdBy);
             }
 
-            if (!string.IsNullOrEmpty(value.ParentId) && isOrganization && value.CreatedById != value.ID)
+            if (!string.IsNullOrEmpty(value.ParentId) && isOrganization && value.ParentId != value.ID)
             {
                 // TODO: This is wrong! ParentId refers to the parent account
                 _factory.CreateOutgoingEntityReference(clue, EntityType.Organization, EntityEdgeType.Parent, value, value.ParentId);
