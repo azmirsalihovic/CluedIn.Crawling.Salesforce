@@ -25,34 +25,21 @@ namespace CluedIn.Crawling.Salesforce
             var client = _clientFactory.CreateNew(salesforcecrawlJobData);
 
             //retrieve data from provider and yield objects
-
-            foreach (var item in client.Get<Account>("Account"))
+            foreach (var item in client.Get<Account>("Account", "'0122o0000007pMrAAI'")) //Person
             {
                 yield return item;
             }
 
-            //foreach (var item in client.Get<PrivateCustomer>("Account"))
-            //{
-            //    //if (bool.Parse(item.IsPersonAccount))
-            //    //If RecordTypeId "0122o0000007pMrAAI" is true, then it's a private customer, otherwise it's an Organization
-            //    if (item.RecordTypeId == "0122o0000007pMrAAI")
-            //        yield return item;
-            //    else if (item.RecordTypeId == "0121t000000Dy89AAC")
-            //    {
-            //        var organization = new BusinessCustomer();
-            //        foreach (var property in organization.GetType().GetProperties())
-            //        {
-            //            property.SetValue(organization, item.GetType().GetProperty(property.Name).GetValue(item));
-            //        }
-            //        yield return organization;
-            //    }
-            //}
+            foreach (var item in client.Get<Account>("Account", "'0121t000000Dy89AAC'")) //Organization
+            {
+                yield return item;
+            }
 
-            foreach (var item in client.Get<Contact>("Contact"))
+            foreach (var item in client.Get<Contact>("Contact", "'0121t0000010SSoAAM'")) //Private Customer
             {
                 //Return only if Contact is an Organization (We don't want private customers)
-                if (item.RecordTypeId == "0121t0000010SSoAAM")
-                    yield return item;
+                //if (item.RecordTypeId == "0121t0000010SSoAAM")
+                yield return item;
             }
         }       
     }

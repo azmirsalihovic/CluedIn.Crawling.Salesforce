@@ -7,11 +7,14 @@ using Xunit.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using DebugCrawlerHost = CrawlerIntegrationTesting.CrawlerHost.DebugCrawlerHost<CluedIn.Crawling.Salesforce.Core.SalesforceCrawlJobData>;
+using System.Collections.Generic;
+using CluedIn.Core.Data;
 
 namespace CluedIn.Crawling.Salesforce.Integration.Test
 {
     public class SalesforceTestFixture
     {
+        public List<string> Entities = new List<string>();
         public ClueStorage ClueStorage { get; }
         private readonly DebugCrawlerHost debugCrawlerHost;
 
@@ -29,9 +32,15 @@ namespace CluedIn.Crawling.Salesforce.Integration.Test
 
             Log = debugCrawlerHost.AppContext.Container.Resolve<ILogger<SalesforceTestFixture>>();
 
-            debugCrawlerHost.ProcessClue += ClueStorage.AddClue;
+            //debugCrawlerHost.ProcessClue += ClueStorage.AddClue;
+            debugCrawlerHost.ProcessClue += AddClueCount;
 
             debugCrawlerHost.Execute(SalesforceConfiguration.Create(), SalesforceConstants.ProviderId);
+        }
+
+        private void AddClueCount(Clue clue)
+        {
+            Entities.Add(clue.OriginEntityCode.Type.Code);
         }
 
         public void PrintClues(ITestOutputHelper output)
