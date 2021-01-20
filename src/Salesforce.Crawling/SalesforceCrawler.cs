@@ -33,15 +33,15 @@ namespace CluedIn.Crawling.Salesforce
                 countItems++;
             }
 
-            //foreach (var item in client.Get<Account>("Account", "'0121t000000Dy89AAC'")) //Organization
-            //{
-            //    yield return item;
-            //}
+            foreach (var item in client.Get<Account>("Account", "'0121t000000Dy89AAC'")) //Organization
+            {
+                yield return item;
+            }
 
-            //foreach (var item in client.Get<Contact>("Contact", "'0121t0000010SSoAAM'")) //Organization
-            //{
-            //    yield return item;
-            //}
+            foreach (var item in client.Get<Contact>("Contact", "'0121t0000010SSoAAM'")) //Organization
+            {
+                yield return item;
+            }
             Console.WriteLine("Antal records: {0}", countItems);
         }
     }

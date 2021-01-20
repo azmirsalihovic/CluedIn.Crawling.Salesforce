@@ -27,7 +27,6 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
         private readonly ForceClient salesforceClient;
         private readonly SalesforceCrawlJobData _jobData;
         private readonly string token;
-        private int countQueryRecords = 0;
 
         public SalesforceClient(ILogger<SalesforceClient> log, SalesforceCrawlJobData salesforceCrawlJobData) // TODO: pass on any extra dependencies
         {
@@ -81,7 +80,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                     //qry = string.Format("SELECT {0} FROM " + query, GetObjectFieldsSelectList(typeName));
                 }
 
-                results = salesforceClient.QueryAsync<T>(qry).Result; //1.631.863
+                results = salesforceClient.QueryAsync<T>(qry).Result;
                 nextRecordsUrl = results.NextRecordsUrl;
             }
             catch (Exception ex)
@@ -91,8 +90,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
             }
             foreach (var item in results.Records)
             {
-                //yield return item;
-                countQueryRecords ++;
+                yield return item;
             }
             while (!string.IsNullOrEmpty(nextRecordsUrl))
             {
@@ -107,8 +105,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 }
                 foreach (var item in results.Records)
                 {
-                    //yield return item;
-                    countQueryRecords++;
+                    yield return item;
                 }
 
                 if (string.IsNullOrEmpty(results.NextRecordsUrl))
@@ -117,7 +114,6 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 //pass nextRecordsUrl back to client.QueryAsync to request next set of records
                 nextRecordsUrl = results.NextRecordsUrl;
             }
-            Console.WriteLine("Antal records: {0}", countQueryRecords);
         }
 
         public AccountInformation GetAccountInformation()
