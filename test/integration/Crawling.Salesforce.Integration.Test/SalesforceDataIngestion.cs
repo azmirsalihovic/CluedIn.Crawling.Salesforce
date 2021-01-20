@@ -18,9 +18,9 @@ namespace CluedIn.Crawling.Salesforce.Integration.Test
 
         [Theory]
         [InlineData("/Provider/Root", 1)]
-        [InlineData("/Organization", 376163)]
-        [InlineData("/Infrastructure/User", 1631532)] //1.631.574
-        [InlineData("/Infrastructure/Contact", 1847)]
+        [InlineData("/Organization", 376163)] //True
+        [InlineData("/Infrastructure/User", 1631574)] //foundCount 717.000/ 431.000
+        [InlineData("/Infrastructure/Contact", 1847)] //True
         //TODO: Add details for the count of entityTypes your test produces
         //[InlineData("SOME_ENTITY_TYPE", 1)]
         public void CorrectNumberOfEntityTypes(string entityType, int expectedCount)
