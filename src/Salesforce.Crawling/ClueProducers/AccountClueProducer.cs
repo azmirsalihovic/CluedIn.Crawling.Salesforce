@@ -110,7 +110,8 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             if (!string.IsNullOrEmpty(value.LastModifiedById))
             {
-                _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ModifiedBy, value, value.LastModifiedById);
+                if (value.LastModifiedById != value.ID)
+                    _factory.CreateOutgoingEntityReference(clue, EntityType.Person, EntityEdgeType.ModifiedBy, value, value.LastModifiedById);
                 var createdBy = new PersonReference(new EntityCode(EntityType.Person, SalesforceConstants.CodeOrigin, value.LastModifiedById));
                 data.Authors.Add(createdBy);
 

@@ -76,7 +76,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 }
                 else
                 {
-                    qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), recordTypeId); // Query for testing Users
+                    qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), recordTypeId);
                     //qry = string.Format("SELECT {0} FROM " + query, GetObjectFieldsSelectList(typeName));
                 }
 
