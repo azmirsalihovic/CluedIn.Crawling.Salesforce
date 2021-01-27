@@ -10,7 +10,6 @@ namespace CluedIn.Crawling.Salesforce
     public class SalesforceCrawler : ICrawlerDataGenerator
     {
         private readonly ISalesforceClientFactory _clientFactory;
-        private int countItems = 0;
 
         public SalesforceCrawler(ISalesforceClientFactory clientFactory)
         {
@@ -25,12 +24,11 @@ namespace CluedIn.Crawling.Salesforce
             }
 
             var client = _clientFactory.CreateNew(salesforcecrawlJobData);
-           
+
             //retrieve data from provider and yield objects
             foreach (var item in client.Get<Account>("Account", "'0122o0000007pMrAAI'")) //Person
             {
                 yield return item;
-                countItems++;
             }
 
             foreach (var item in client.Get<Account>("Account", "'0121t000000Dy89AAC'")) //Organization
@@ -42,7 +40,6 @@ namespace CluedIn.Crawling.Salesforce
             {
                 yield return item;
             }
-            Console.WriteLine("Antal records: {0}", countItems);
         }
     }
 }
