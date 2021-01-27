@@ -62,7 +62,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c) && !isPerson)
             {
-                data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.KUK, value.KUKCustomerID__c));
+                data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.CustId, value.KUKCustomerID__c));
             } // Check if we want to filter on isPerson or create it for all clues
 
             if (!string.IsNullOrEmpty(value.Name))
@@ -271,7 +271,12 @@ namespace CluedIn.Crawling.Salesforce.Subjects
                 data.Aliases.Add(value.PersonAssistantPhone);
             }
 
-            data.Properties[vocab.PersonBirthDate] = value.PersonBirthDate.PrintIfAvailable();
+            if (!string.IsNullOrEmpty(value.PersonBirthDate))
+            {
+                data.Properties[vocab.PersonBirthDate] = value.PersonBirthDate.PrintIfAvailable();
+                data.Aliases.Add(value.PersonBirthDate);
+            }
+
             data.Properties[vocab.PersonContactId] = value.PersonContactId.PrintIfAvailable();
             data.Properties[vocab.PersonContactIdC] = value.PersonContactId__c.PrintIfAvailable();
             data.Properties[vocab.PersonDepartment] = value.PersonDepartment.PrintIfAvailable();

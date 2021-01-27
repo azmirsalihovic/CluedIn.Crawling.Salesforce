@@ -22,7 +22,7 @@ namespace Semler.Common.PreProcessing
             {
                 if (metadata != null)
                 {
-                    var kukCodes = metadata.Codes.Where(x => x.ToString().Contains("KUK"));
+                    var kukCodes = metadata.Codes.Where(x => x.ToString().Contains("CustId"));
                     IEntityCode code = null;
                     if (kukCodes.Any())
                     {
@@ -30,11 +30,11 @@ namespace Semler.Common.PreProcessing
 
                         if (metadata.EntityType.Is(EntityType.Organization))
                         {
-                            code = new EntityCode(EntityType.Infrastructure.User, code.Origin, code.Value);
+                            code = new EntityCode(EntityType.Infrastructure.User, Origins.KUK, code.Value);
                         }
                         else if (metadata.EntityType.Is(EntityType.Infrastructure.User))
                         {
-                            code = new EntityCode(EntityType.Organization, code.Origin, code.Value);
+                            code = new EntityCode(EntityType.Organization, Origins.KUK, code.Value);
                         }
 
                         var entity = context.PrimaryDataStore.GetByEntityCode(context, code);
