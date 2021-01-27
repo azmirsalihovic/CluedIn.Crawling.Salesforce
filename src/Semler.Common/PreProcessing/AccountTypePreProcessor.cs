@@ -39,12 +39,14 @@ namespace Semler.Common.PreProcessing
 
                         var entity = context.PrimaryDataStore.GetByEntityCode(context, code);
 
-                        if (entity.ProcessedData.OriginEntityCode.Origin.Code == "KUK")
+                        if (entity != null)
                         {
-                            if (entity != null)
+                            if (entity.ProcessedData.OriginEntityCode.Origin.Code == "KUK")
                             {
-                                metadata.EntityType = entity.EntityType;
-                                metadata.Codes.Add(code);
+                                {
+                                    metadata.EntityType = entity.EntityType;
+                                    metadata.Codes.Add(new EntityCode(entity.EntityType, Origins.CustId, code.Value));
+                                }
                             }
                         }
                     }
