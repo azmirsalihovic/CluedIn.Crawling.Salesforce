@@ -37,7 +37,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             {
                 data.Name = value.Name;
                 data.DisplayName = value.Name;
-                data.Aliases.Add(value.Name);
+                //data.Aliases.Add(value.Name);
             }
 
             if (!string.IsNullOrEmpty(value.CreatedDate))
@@ -116,7 +116,13 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             data.Properties[SalesforceVocabulary.Contact.RecordTypeId] = value.RecordTypeId.PrintIfAvailable();
             data.Properties[SalesforceVocabulary.Contact.AssistantName] = value.AssistantName.PrintIfAvailable();
             data.Properties[SalesforceVocabulary.Contact.FirstName] = value.FirstName.PrintIfAvailable();
-            data.Properties[SalesforceVocabulary.Contact.Birthdate] = value.Birthdate.PrintIfAvailable();
+
+            if (!string.IsNullOrEmpty(value.Birthdate))
+            {
+                data.Properties[SalesforceVocabulary.Contact.Birthdate] = value.Birthdate.PrintIfAvailable();
+                data.Aliases.Add(value.Birthdate);
+            }
+
             data.Properties[SalesforceVocabulary.Contact.Department] = value.Department.PrintIfAvailable();
             data.Properties[SalesforceVocabulary.Contact.DoNotCall] = value.DoNotCall.PrintIfAvailable();
             data.Properties[SalesforceVocabulary.Contact.IsEmailBounced] = value.IsEmailBounced.PrintIfAvailable();
