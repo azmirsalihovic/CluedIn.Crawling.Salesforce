@@ -9,6 +9,7 @@
             Salesforce = "Salesforce";
             Cvr = "cvr";
             Cpr = "cpr";
+            CustId = "CustId";
         }
 
         public static string KUK { get; private set; }
@@ -16,5 +17,6 @@
         public static string Salesforce { get; private set; }
         public static string Cvr { get; private set; }
         public static string Cpr { get; private set; }
+        public static string CustId { get; private set; }
     }
 }
