@@ -112,48 +112,20 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
             });
 
             //CluedIn
-            AddMapping(Birthdate, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Birthday);
-            AddMapping(Department, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Department);
-            AddMapping(Email, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Email);
-            AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
-            AddMapping(HomePhone, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomePhoneNumber);
-            AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
-            AddMapping(MobilePhone, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.MobileNumber);
-            AddMapping(Phone, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);
-            AddMapping(Salutation, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Title);
-            AddMapping(Title, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.JobTitle);
             AddMapping(SystemModstamp, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInDates.ModifiedDate);
 
-            //Semler vocabs ToDo
+            //Semler vocabs
             AddMapping(MailingAddress, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLine1);
-            AddMapping(OtherAddress, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLineOther);
-            AddMapping(Birthdate, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Birthdate);
             AddMapping(MailingCity, Semler.Common.Vocabularies.SemlerVocabularies.Contact.City);
-            AddMapping(OtherCity, Semler.Common.Vocabularies.SemlerVocabularies.Contact.CityOther);
             AddMapping(ContactRoleC, Semler.Common.Vocabularies.SemlerVocabularies.Contact.ContactRole);
             AddMapping(MailingCountry, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Country);
-            AddMapping(OtherCountry, Semler.Common.Vocabularies.SemlerVocabularies.Contact.CountryOther);
-            AddMapping(MailingCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.CountryCode);
-            AddMapping(OtherCountryCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.CountryCodeOther);
-            AddMapping(Name, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Name);
             AddMapping(Department, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Department);
             AddMapping(Email, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Email);
             AddMapping(FirstName, Semler.Common.Vocabularies.SemlerVocabularies.Contact.FirstName);
             AddMapping(LastName, Semler.Common.Vocabularies.SemlerVocabularies.Contact.LastName);
             AddMapping(MobilePhone, Semler.Common.Vocabularies.SemlerVocabularies.Contact.MobPhoneNum);
-            AddMapping(OtherPhone, Semler.Common.Vocabularies.SemlerVocabularies.Contact.PhoneNumOther);
-            AddMapping(Phone, Semler.Common.Vocabularies.SemlerVocabularies.Contact.BusinessPhone);
+            AddMapping(Name, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Name);
             AddMapping(MailingPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.PostalCode);
-            AddMapping(OtherPostalCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.PostalCodeOther);
-            AddMapping(MailingGeocodeAccuracy, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrGeocode);
-            AddMapping(MailingLatitude, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLatitude);
-            AddMapping(MailingLongitude, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLongitude);
-            AddMapping(MailingState, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrState);
-            AddMapping(MailingStateCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrStateCode);
-            AddMapping(MailingStreet, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLine2);
-            AddMapping(OtherState, Semler.Common.Vocabularies.SemlerVocabularies.Contact.OtherState);
-            AddMapping(OtherStateCode, Semler.Common.Vocabularies.SemlerVocabularies.Contact.OtherStateCode);
-            AddMapping(OtherStreet, Semler.Common.Vocabularies.SemlerVocabularies.Contact.AdrLine2Other);
         }
 
         public VocabularyKey AccountId { get; private set; }
