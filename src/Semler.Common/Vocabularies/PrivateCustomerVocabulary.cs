@@ -97,7 +97,8 @@ namespace Semler.Common.Vocabularies
             AddMapping(NamePer1, SemlerVocabularies.Customer.NamePer1);
             AddMapping(PostalCodePer1, SemlerVocabularies.Customer.PostalCodePer1);
 
-            //Geomatic Common Customer
+            //KUK Common Customer
+            AddMapping(AdrLine2, SemlerVocabularies.Customer.AdrLine2);
             AddMapping(EmailType, SemlerVocabularies.Customer.EmailType);
             AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
             AddMapping(PhoneType, SemlerVocabularies.Customer.PhoneType);

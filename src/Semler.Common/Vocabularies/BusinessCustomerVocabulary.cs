@@ -23,6 +23,7 @@ namespace Semler.Common.Vocabularies
                 CVRNumber = group.Add(new VocabularyKey("CVRNumber", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("CVR Number"));
                 Dealer = group.Add(new VocabularyKey("Dealer", VocabularyKeyDataType.Identifier, VocabularyKeyVisibility.Visible).WithDisplayName("Dealer"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.OrganizationName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
+                PhoneNumber = group.Add(new VocabularyKey("PhoneNumber", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Phone Number"));
                 PostalCode = group.Add(new VocabularyKey("PostalCode", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code"));
                 State = group.Add(new VocabularyKey("State", VocabularyKeyDataType.GeographyState, VocabularyKeyVisibility.Visible).WithDisplayName("State"));
                 Website = group.Add(new VocabularyKey("Website", VocabularyKeyDataType.Uri, VocabularyKeyVisibility.Visible).WithDisplayName("Website"));
@@ -53,10 +54,12 @@ namespace Semler.Common.Vocabularies
 
             //SalesForce
             AddMapping(AccPhone, SemlerVocabularies.Customer.AccPhone);
-            AddMapping(CVRNumber, SemlerVocabularies.Customer.CVRNumber);
+            AddMapping(AdrLine1, SemlerVocabularies.Customer.AdrLine1);
             AddMapping(City, SemlerVocabularies.Customer.City);
             AddMapping(Country, SemlerVocabularies.Customer.Country);
             AddMapping(CustomerNumber, SemlerVocabularies.Customer.CustomerNumber);
+            AddMapping(CVRNumber, SemlerVocabularies.Customer.CVRNumber);
+            AddMapping(Dealer, SemlerVocabularies.Customer.Dealer);
             AddMapping(Name, SemlerVocabularies.Customer.Name);
             AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
             AddMapping(PostalCode, SemlerVocabularies.Customer.PostalCode);
@@ -64,7 +67,6 @@ namespace Semler.Common.Vocabularies
             AddMapping(Website, SemlerVocabularies.Customer.Website);
 
             //Geomatic
-            AddMapping(AdrLine1, SemlerVocabularies.Customer.AdrLine1);
             AddMapping(COName, SemlerVocabularies.Customer.COName);
 
             //KUK
@@ -73,7 +75,6 @@ namespace Semler.Common.Vocabularies
             AddMapping(Email, SemlerVocabularies.Customer.Email);
             AddMapping(EmailType, SemlerVocabularies.Customer.EmailType);
             AddMapping(PhoneType, SemlerVocabularies.Customer.PhoneType);
-            AddMapping(AdrLine2, SemlerVocabularies.Customer.AdrLine2);
             AddMapping(TaxCode, SemlerVocabularies.Customer.TaxCode);
         }
 
