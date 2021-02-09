@@ -64,6 +64,12 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
 
         public IEnumerable<T> Get<T>(string query, string recordTypeId) where T : SystemObject
         {
+            //Get DealerID
+            string[] filterByDealerIds = null;
+            if (!string.IsNullOrEmpty(_jobData.SearchDealerIds))
+                filterByDealerIds = _jobData.SearchDealerIds.Split(",");
+            bool onlyReturnDealersFromFilter = filterByDealerIds != null;
+
             var typeName = ((DisplayNameAttribute)typeof(T).GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
             string nextRecordsUrl;
             global::Salesforce.Common.Models.Json.QueryResult<T> results;
@@ -73,6 +79,13 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 if (_jobData.LastCrawlFinishTime > DateTimeOffset.MinValue)
                 {
                     qry = string.Format("SELECT {0} FROM " + query + " WHERE SystemModStamp >= {1}", GetObjectFieldsSelectList(typeName), _jobData.LastCrawlFinishTime.AddDays(-2).ToString("o"));
+                }
+                else if (onlyReturnDealersFromFilter)
+                {
+                    var resourceParams = string.Join(",",
+                        filterByDealerIds.Select(r => "'" + r.ToString() + "'"));
+
+                    qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND DealershipID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
                 }
                 else
                 {

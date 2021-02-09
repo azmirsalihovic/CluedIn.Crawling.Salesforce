@@ -15,6 +15,7 @@ namespace CluedIn.Crawling.Salesforce.Core
             public const string ClientSecret = nameof(ClientSecret);
             public const string UserName = nameof(UserName);
             public const string Password = nameof(Password);
+            public const string SearchDealerIds = nameof(SearchDealerIds);
         }
 
         // TODO Complete the following section
@@ -36,14 +37,56 @@ namespace CluedIn.Crawling.Salesforce.Core
         {
             token = new Control[]
             {
-        // You can define controls to show in the GUI in order to authenticate with this integration
-        //        new Control()
-        //        {
-        //            displayName = "API key",
-        //            isRequired = false,
-        //            name = "api",
-        //            type = "text"
-        //        }
+                // You can define controls to show in the GUI in order to authenticate with this integration
+                new Control()
+                {
+                    displayName = "API key",
+                    isRequired = true,
+                    name = nameof(KeyName.ApiKey),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Grant type",
+                    isRequired = true,
+                    name = nameof(KeyName.GrantType),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Client id",
+                    isRequired = true,
+                    name = nameof(KeyName.ClientId),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Client secret",
+                    isRequired = true,
+                    name = nameof(KeyName.ClientSecret),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Username",
+                    isRequired = true,
+                    name = nameof(KeyName.UserName),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Password",
+                    isRequired = true,
+                    name = nameof(KeyName.Password),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Only search dealers with these IDs. Separate with comma, if there's more",
+                    isRequired = false,
+                    name = nameof(KeyName.SearchDealerIds),
+                    type = "text"
+                }
             }
         };
 
