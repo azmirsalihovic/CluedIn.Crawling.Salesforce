@@ -46,10 +46,10 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
                 CreatedById = group.Add(new VocabularyKey("createdbyid", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Created By ID").WithDescription("audit"));
                 CreatedDate = group.Add(new VocabularyKey("createddate", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Created Date").WithDescription("audit"));
                 CurrentCarBrandC = group.Add(new VocabularyKey("currentCarBrandC", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Current Car Brand").WithDescription("Survey response segment "));
-                IsDeleted = group.Add(new VocabularyKey("isdeleted", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Deleted"));
-                Department = group.Add(new VocabularyKey("department", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Department"));
+                IsDeleted = group.Add(new VocabularyKey("isdeleted", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Deleted").WithDescription("Deleted"));
+                Department = group.Add(new VocabularyKey("department", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Department").WithDescription("Department"));
                 DoNotCall = group.Add(new VocabularyKey("donotcall", VocabularyKeyDataType.Text, VocabularyKeyVisibility.HiddenInFrontendUI).WithDisplayName("Do Not Call"));
-                Email = group.Add(new VocabularyKey("email", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Email"));
+                Email = group.Add(new VocabularyKey("email", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Email").WithDescription("Email"));
                 FirstName = group.Add(new VocabularyKey("firstname", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("First Name").WithDescription("\"The contact’s first name up to 40 characters.\""));
                 Name = group.Add(new VocabularyKey("name", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Full Name").WithDescription("Concatenation of FirstName, MiddleName, LastName, and Suffix up to 203 characters, including whitespaces."));
                 HashedEmailC = group.Add(new VocabularyKey("hashedemailC", VocabularyKeyDataType.Text, VocabularyKeyVisibility.HiddenInFrontendUI).WithDisplayName("Hashed Email"));
