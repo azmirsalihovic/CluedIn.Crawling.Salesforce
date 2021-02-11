@@ -226,44 +226,6 @@ namespace CluedIn.Crawling.Salesforce.Subjects
 
             data.Properties[SalesforceVocabulary.Contact.PhotoUrl] = value.PhotoUrl.PrintIfAvailable();
 
-            //if (value.PhotoUrl != null)
-            //{
-            //    if (value.PhotoUrl != null)
-            //    {
-            //        try
-            //        {
-            //            using (var webClient = new WebClient())
-            //            {
-            //                webClient.Headers.Add("Authorization", "Bearer " + state.JobData.Token.AccessToken);
-            //                using (var stream = webClient.OpenRead(value.PhotoUrl))
-            //                {
-            //                    var inArray = StreamUtilies.ReadFully(stream);
-            //                    if (inArray != null)
-            //                    {
-            //                        var rawDataPart = new RawDataPart()
-            //                        {
-            //                            Type = "/RawData/PreviewImage",
-            //                            MimeType = CluedIn.Core.FileTypes.MimeType.Jpeg.Code,
-            //                            FileName = "preview_{0}".FormatWith(clue.OriginEntityCode.Key),
-            //                            RawDataMD5 = FileHashUtility.GetMD5Base64String(inArray),
-            //                            RawData = Convert.ToBase64String(inArray)
-            //                        };
-
-            //                        clue.Details.RawData.Add(rawDataPart);
-
-            //                        clue.Data.EntityData.PreviewImage = new ImageReferencePart(rawDataPart);
-            //                    }
-            //                }
-            //            }
-
-            //        }
-            //        catch (Exception exception)
-            //        {
-            //            state.Log.Warn(() => "Could not download Contact Thumbnail Preview from SalesForce.", exception);
-            //        }
-            //    }
-            //}
-
             if (!string.IsNullOrEmpty(value.ReportsToId))
             {
                 if (value.ReportsToId != value.ID)
