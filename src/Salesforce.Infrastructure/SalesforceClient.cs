@@ -12,6 +12,9 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Linq;
 using Salesforce.Common;
+using System.Text;
+using System.IO;
+using Microsoft.VisualBasic.FileIO;
 
 namespace CluedIn.Crawling.Salesforce.Infrastructure
 {
@@ -64,7 +67,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
 
         public IEnumerable<T> Get<T>(string query, string recordTypeId) where T : SystemObject
         {
-            //Get DealerID
+            //Get KUKCustomerIDs from configuration (This alternative for already implemented medthod of reading from CSV file, this is reading directly from config as commaseperated values)
             string[] filterByCustomersIds = null;
             if (!string.IsNullOrEmpty(_jobData.KUKCustomerID))
                 filterByCustomersIds = _jobData.KUKCustomerID.Split(",");
@@ -127,6 +130,38 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 //pass nextRecordsUrl back to client.QueryAsync to request next set of records
                 nextRecordsUrl = results.NextRecordsUrl;
             }
+        }
+
+        public List<string> GetKUKCustomerIDList()
+        {
+            List<string> KUKCustomerIDList = new List<string>();
+            try
+            {
+                using (var parser = new TextFieldParser(_jobData.FilePath))
+                {
+                    parser.TextFieldType = FieldType.Delimited;
+                    parser.HasFieldsEnclosedInQuotes = true;
+                    parser.SetDelimiters(new string[] { ";" });
+                    parser.ReadFields();
+                    while (!parser.EndOfData)
+                    {
+                        try
+                        {
+                            var filterByCustomersIds = parser.ReadFields();
+                            KUKCustomerIDList.Add(filterByCustomersIds[1]);
+                        }
+                        catch (Exception)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return KUKCustomerIDList;
         }
 
         public AccountInformation GetAccountInformation()
