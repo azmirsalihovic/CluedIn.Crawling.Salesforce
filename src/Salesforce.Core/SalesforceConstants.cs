@@ -15,7 +15,8 @@ namespace CluedIn.Crawling.Salesforce.Core
             public const string ClientSecret = nameof(ClientSecret);
             public const string UserName = nameof(UserName);
             public const string Password = nameof(Password);
-            public const string SearchDealerIds = nameof(SearchDealerIds);
+            public const string KUKCustomerID = nameof(KUKCustomerID);
+            public const string FilePath = nameof(FilePath);
         }
 
         // TODO Complete the following section
@@ -84,7 +85,14 @@ namespace CluedIn.Crawling.Salesforce.Core
                 {
                     displayName = "Only search dealers with these IDs. Separate with comma, if there's more",
                     isRequired = false,
-                    name = nameof(KeyName.SearchDealerIds),
+                    name = nameof(KeyName.KUKCustomerID),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "List with KUKCustomerIDs",
+                    isRequired = false,
+                    name = nameof(KeyName.FilePath),
                     type = "text"
                 }
             }

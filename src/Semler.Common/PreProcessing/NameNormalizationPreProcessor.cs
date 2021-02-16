@@ -39,8 +39,8 @@ namespace Semler.Common.PreProcessing
             {
                 if (metadata.EntityType.Is(EntityType.Infrastructure.User))
                     metadata.Name = GetLettersWithWhiteSpaces(GetTitleCapital(metadata.Name));
-                else
-                    GetTitleCapital(metadata.Name);
+                else if (metadata.EntityType.Is(EntityType.Organization))
+                    metadata.Name = GetTitleCapital(metadata.Name);
             }
 
             //Business Customer

@@ -14,6 +14,7 @@ namespace CluedIn.Crawling.Salesforce.Core
         public string ClientSecret { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string SearchDealerIds { get; set; }
+        public string KUKCustomerID { get; set; }
+        public string FilePath { get; set; }
     }
 }

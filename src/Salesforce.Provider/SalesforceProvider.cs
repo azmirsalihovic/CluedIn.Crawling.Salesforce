@@ -194,8 +194,11 @@ namespace CluedIn.Provider.Salesforce
             if (configuration.ContainsKey(SalesforceConstants.KeyName.Password))
             { jobData.Password = configuration[SalesforceConstants.KeyName.Password].ToString(); }
 
-            if (configuration.ContainsKey(SalesforceConstants.KeyName.SearchDealerIds))
-            { jobData.SearchDealerIds = configuration[SalesforceConstants.KeyName.SearchDealerIds].ToString(); }
+            if (configuration.ContainsKey(SalesforceConstants.KeyName.KUKCustomerID))
+            { jobData.KUKCustomerID = configuration[SalesforceConstants.KeyName.KUKCustomerID].ToString(); }
+
+            if (configuration.ContainsKey(SalesforceConstants.KeyName.FilePath))
+            { jobData.FilePath = configuration[SalesforceConstants.KeyName.FilePath].ToString(); }
 
             //if (!jobData.IsAuthenticated)
             //    return null;
