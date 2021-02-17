@@ -25,6 +25,7 @@ namespace Semler.Common.Vocabularies
                 Department = group.Add(new VocabularyKey("Department", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Department"));
                 Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Email, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail"));
                 FirstName = group.Add(new VocabularyKey("FirstName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name"));
+                HomePhoneNr = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Home Phone"));
                 LastName = group.Add(new VocabularyKey("LastName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name"));
                 MobPhoneNum = group.Add(new VocabularyKey("MobPhoneNum", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Mobile Phone"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
@@ -32,12 +33,13 @@ namespace Semler.Common.Vocabularies
             });
 
             //(need review)
-            AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressStreetName);
+            AddMapping(AdrLine1, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddress);
             AddMapping(City, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCity);
             AddMapping(Country, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressCountryName);
             AddMapping(Department, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Department);
             AddMapping(Email, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.Email);
             AddMapping(FirstName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FirstName);
+            AddMapping(HomePhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomePhoneNumber);
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(MobPhoneNum, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.MobileNumber);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
@@ -51,6 +53,7 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey Department { get; private set; }
         public VocabularyKey Email { get; private set; }
         public VocabularyKey FirstName { get; private set; }
+        public VocabularyKey HomePhoneNr { get; private set; }
         public VocabularyKey LastName { get; private set; }
         public VocabularyKey MobPhoneNum { get; private set; }
         public VocabularyKey Name { get; private set; }
