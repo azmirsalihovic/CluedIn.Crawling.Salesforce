@@ -122,6 +122,7 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
             AddMapping(Department, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Department);
             AddMapping(Email, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Email);
             AddMapping(FirstName, Semler.Common.Vocabularies.SemlerVocabularies.Contact.FirstName);
+            AddMapping(HomePhone, Semler.Common.Vocabularies.SemlerVocabularies.Contact.HomePhoneNr);
             AddMapping(LastName, Semler.Common.Vocabularies.SemlerVocabularies.Contact.LastName);
             AddMapping(MobilePhone, Semler.Common.Vocabularies.SemlerVocabularies.Contact.MobPhoneNum);
             AddMapping(Name, Semler.Common.Vocabularies.SemlerVocabularies.Contact.Name);
