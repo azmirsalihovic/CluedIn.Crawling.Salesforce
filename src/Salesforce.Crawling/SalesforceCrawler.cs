@@ -31,7 +31,7 @@ namespace CluedIn.Crawling.Salesforce
             //retrieve data from provider and yield objects
             foreach (var item in client.Get<Account>("Account", "'0122o0000007pMrAAI'")) //Person
             {
-                if(KUKCustomerIDList != null)
+                if (KUKCustomerIDList != null)
                 {
                     if (KUKCustomerIDList.Contains(item.KUKCustomerID__c) || KUKCustomerIDList.Count == 0)
                         yield return item;
