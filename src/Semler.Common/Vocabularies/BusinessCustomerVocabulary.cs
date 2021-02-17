@@ -30,6 +30,7 @@ namespace Semler.Common.Vocabularies
                 COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
 
                 AdrLine2 = group.Add(new VocabularyKey("AdrLine2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2"));
+                BelongDealerID = group.Add(new VocabularyKey("BelongDealerID", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Belong Dealer ID"));
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
                 Email = group.Add(new VocabularyKey("Email", VocabularyKeyDataType.Email, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail"));
                 EmailType = group.Add(new VocabularyKey("EmailType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail Type"));
@@ -64,6 +65,7 @@ namespace Semler.Common.Vocabularies
             AddMapping(COName, SemlerVocabularies.Customer.COName);
 
             AddMapping(AdrLine2, SemlerVocabularies.Customer.AdrLine2);
+            AddMapping(BelongDealerID, SemlerVocabularies.Customer.BelongDealerID);
             AddMapping(EANNumber, SemlerVocabularies.Customer.EANNumber);
             AddMapping(Email, SemlerVocabularies.Customer.Email);
             AddMapping(EmailType, SemlerVocabularies.Customer.EmailType);
@@ -75,6 +77,7 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey AdrLine1 { get; private set; }
         public VocabularyKey COName { get; private set; }
         public VocabularyKey AdrLine2 { get; private set; }
+        public VocabularyKey BelongDealerID { get; private set; }
         public VocabularyKey CVRNumber { get; private set; }
         public VocabularyKey MainDealerID { get; private set; }
         public VocabularyKey City { get; private set; }

@@ -50,6 +50,7 @@ namespace Semler.Common.Vocabularies
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
 
                 AdrLine2 = group.Add(new VocabularyKey("AdrLine2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2"));
+                BelongDealerID = group.Add(new VocabularyKey("BelongDealerID", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Belong Dealer ID"));
                 EANNumber = group.Add(new VocabularyKey("EANNumber", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("EAN Number"));
                 EmailType = group.Add(new VocabularyKey("EmailType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail Type"));
                 PhoneType = group.Add(new VocabularyKey("PhoneType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Phone Type"));
@@ -93,6 +94,7 @@ namespace Semler.Common.Vocabularies
         public VocabularyKey PostalCode { get; private set; }
         public VocabularyKey PostalCodePer1 { get; private set; }
         public VocabularyKey AdrLine2 { get; private set; }
+        public VocabularyKey BelongDealerID { get; private set; }
         public VocabularyKey State { get; private set; }
         public VocabularyKey Website { get; private set; }
     }

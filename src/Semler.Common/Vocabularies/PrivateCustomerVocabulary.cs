@@ -46,10 +46,10 @@ namespace Semler.Common.Vocabularies
                 PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
 
                 AdrLine2 = group.Add(new VocabularyKey("AdrLine2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2"));
+                BelongDealerID = group.Add(new VocabularyKey("BelongDealerID", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Belong Dealer ID"));
                 EmailType = group.Add(new VocabularyKey("EmailType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail Type"));
                 PhoneNumber = group.Add(new VocabularyKey("PhoneNumber", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Phone Number"));
                 PhoneType = group.Add(new VocabularyKey("PhoneType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Phone Type"));
-                BelongDealerID = group.Add(new VocabularyKey("BelongDealerID", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("Belong Dealer ID"));
             });
 
             AddMapping(AccPhone, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);//PhoneNumber
@@ -103,6 +103,7 @@ namespace Semler.Common.Vocabularies
             AddMapping(PostalCodePer1, SemlerVocabularies.Customer.PostalCodePer1);
 
             AddMapping(AdrLine2, SemlerVocabularies.Customer.AdrLine2);
+            AddMapping(BelongDealerID, SemlerVocabularies.Customer.BelongDealerID);
             AddMapping(EmailType, SemlerVocabularies.Customer.EmailType);
             AddMapping(PhoneNumber, SemlerVocabularies.Customer.PhoneNumber);
             AddMapping(PhoneType, SemlerVocabularies.Customer.PhoneType);
