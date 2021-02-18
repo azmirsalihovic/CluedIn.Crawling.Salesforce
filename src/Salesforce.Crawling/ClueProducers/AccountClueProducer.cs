@@ -60,9 +60,12 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             //    data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.Cvr, value.CVR__c));
             //}
 
-            if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c) && !isPerson)
+            if (!string.IsNullOrWhiteSpace(value.KUKCustomerID__c))
             {
-                data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.CustId, value.KUKCustomerID__c));
+                if (!isPerson)
+                    data.Codes.Add(new EntityCode(EntityType.Organization, Semler.Common.Origins.CustId, value.KUKCustomerID__c));
+                if (isPerson)
+                    data.Codes.Add(new EntityCode(EntityType.Infrastructure.User, Semler.Common.Origins.CustId, value.KUKCustomerID__c));
             } // Check if we want to filter on isPerson or create it for all clues
 
             if (!string.IsNullOrEmpty(value.Name))
