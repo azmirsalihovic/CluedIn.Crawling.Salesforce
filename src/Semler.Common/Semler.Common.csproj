@@ -10,5 +10,6 @@
   <ItemGroup>
     <PackageReference Include="CluedIn.Core" />
     <PackageReference Include="CluedIn.Processing" />
+    <PackageReference Include="CluedIn.Core.Data.Repositories" />
   </ItemGroup>
 </Project>
