@@ -68,8 +68,9 @@ namespace Semler.Common.Vocabularies
             AddMapping(LandPhoneNum, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);//PhoneNumber
             AddMapping(LastName, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.LastName);
             AddMapping(MobPhoneNr, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeMobileNumber);
-            AddMapping(PostalCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressZipCode);
             AddMapping(Name, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.FullName);
+            AddMapping(PhoneNumber, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.PhoneNumber);//PhoneNumber
+            AddMapping(PostalCode, CluedIn.Core.Data.Vocabularies.Vocabularies.CluedInUser.HomeAddressZipCode);
 
             AddMapping(AccPhone, SemlerVocabularies.Customer.AccPhone);
             AddMapping(AdrLine1, SemlerVocabularies.Customer.AdrLine1);
