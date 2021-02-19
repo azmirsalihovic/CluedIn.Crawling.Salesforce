@@ -69,6 +69,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
             var kukCustomerIdList = GetKUKCustomerIDList();
             bool onlyReturnCustomersFromFilter = kukCustomerIdList != null ? kukCustomerIdList.Count > 0 : false;
             var typeName = ((DisplayNameAttribute)typeof(T).GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
+            string nextRecordsUrl;
             global::Salesforce.Common.Models.Json.QueryResult<T> results;
 
             if (onlyReturnCustomersFromFilter)
@@ -104,6 +105,54 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                     {
                         yield return item;
                     }
+                }
+            }
+            else
+            {
+                try
+                {
+                    var qry = string.Empty;
+                    if (_jobData.LastCrawlFinishTime > DateTimeOffset.MinValue)
+                    {
+                        qry = string.Format("SELECT {0} FROM " + query + " WHERE SystemModStamp >= {1}", GetObjectFieldsSelectList(typeName), _jobData.LastCrawlFinishTime.AddDays(-2).ToString("o"));
+                    }
+                    else
+                    {
+                        qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), recordTypeId);
+                    }
+                    results = salesforceClient.QueryAsync<T>(qry).Result;
+                    nextRecordsUrl = results.NextRecordsUrl;
+                }
+                catch (Exception ex)
+                {
+                    _log.LogError("Could not fetch Salesforce Data", ex);
+                    yield break;
+                }
+                foreach (var item in results.Records)
+                {
+                    yield return item;
+                }
+                while (!string.IsNullOrEmpty(nextRecordsUrl))
+                {
+                    try
+                    {
+                        results = salesforceClient.QueryContinuationAsync<T>(nextRecordsUrl).Result;
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.LogError("Could not fetch Salesforce Data", ex);
+                        yield break;
+                    }
+                    foreach (var item in results.Records)
+                    {
+                        yield return item;
+                    }
+
+                    if (string.IsNullOrEmpty(results.NextRecordsUrl))
+                        yield break;
+
+                    //pass nextRecordsUrl back to client.QueryAsync to request next set of records
+                    nextRecordsUrl = results.NextRecordsUrl;
                 }
             }
         }
