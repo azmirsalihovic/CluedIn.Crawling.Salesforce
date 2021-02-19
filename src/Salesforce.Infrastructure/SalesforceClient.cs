@@ -12,8 +12,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Linq;
 using Salesforce.Common;
-using System.Text;
-using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
 namespace CluedIn.Crawling.Salesforce.Infrastructure
@@ -65,13 +63,107 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
             return auth;
         }
 
+        public IEnumerable<T> GetById<T>(string query, string recordTypeId) where T : SystemObject
+        {
+            int records = 100;
+            var kukCustomerIdList = GetKUKCustomerIDList();
+            bool onlyReturnCustomersFromFilter = kukCustomerIdList != null ? kukCustomerIdList.Count > 0 : false;
+            var typeName = ((DisplayNameAttribute)typeof(T).GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
+            string nextRecordsUrl;
+            global::Salesforce.Common.Models.Json.QueryResult<T> results;
+
+            if (onlyReturnCustomersFromFilter)
+            {
+                while (kukCustomerIdList.Count > 0)
+                {
+                    records = kukCustomerIdList.Count < 100 ? kukCustomerIdList.Count : records;
+                    try
+                    {
+                        var qry = string.Empty;
+                        if (_jobData.LastCrawlFinishTime > DateTimeOffset.MinValue)
+                        {
+                            qry = string.Format("SELECT {0} FROM " + query + " WHERE SystemModStamp >= {1}", GetObjectFieldsSelectList(typeName), _jobData.LastCrawlFinishTime.AddDays(-2).ToString("o"));
+                        }
+                        else
+                        {
+                            var firstHundredeIds = kukCustomerIdList.Take(records);//OrderBy(i => i[0]).Take(100);
+                            var resourceParams = string.Join(",",
+                                firstHundredeIds.Select(r => "'" + r.ToString() + "'"));
+
+                            qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
+                        }
+
+                        results = salesforceClient.QueryAsync<T>(qry).Result;
+                        kukCustomerIdList.RemoveRange(0,records);//OrderBy(i => i[0]).RemoveRange(0,records);
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.LogError("Could not fetch Salesforce Data", ex);
+                        yield break;
+                    }
+                    foreach (var item in results.Records)
+                    {
+                        yield return item;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
+                    var qry = string.Empty;
+                    if (_jobData.LastCrawlFinishTime > DateTimeOffset.MinValue)
+                    {
+                        qry = string.Format("SELECT {0} FROM " + query + " WHERE SystemModStamp >= {1}", GetObjectFieldsSelectList(typeName), _jobData.LastCrawlFinishTime.AddDays(-2).ToString("o"));
+                    }
+                    else
+                    {
+                        qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), recordTypeId);
+                    }
+                    results = salesforceClient.QueryAsync<T>(qry).Result;
+                    nextRecordsUrl = results.NextRecordsUrl;
+                }
+                catch (Exception ex)
+                {
+                    _log.LogError("Could not fetch Salesforce Data", ex);
+                    yield break;
+                }
+                foreach (var item in results.Records)
+                {
+                    yield return item;
+                }
+                while (!string.IsNullOrEmpty(nextRecordsUrl))
+                {
+                    try
+                    {
+                        results = salesforceClient.QueryContinuationAsync<T>(nextRecordsUrl).Result;
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.LogError("Could not fetch Salesforce Data", ex);
+                        yield break;
+                    }
+                    foreach (var item in results.Records)
+                    {
+                        yield return item;
+                    }
+
+                    if (string.IsNullOrEmpty(results.NextRecordsUrl))
+                        yield break;
+
+                    //pass nextRecordsUrl back to client.QueryAsync to request next set of records
+                    nextRecordsUrl = results.NextRecordsUrl;
+                }
+            }
+        }
+
         public IEnumerable<T> Get<T>(string query, string recordTypeId) where T : SystemObject
         {
-            //Get KUKCustomerIDs from configuration (This alternative for already implemented medthod of reading from CSV file, this is reading directly from config as commaseperated values)
-            string[] filterByCustomersIds = null;
-            if (!string.IsNullOrEmpty(_jobData.KUKCustomerID))
-                filterByCustomersIds = _jobData.KUKCustomerID.Split(",");
-            bool onlyReturnCustomersFromFilter = filterByCustomersIds != null;
+            //Get KUKCustomerIDs from configuration (This is alternative for already implemented method that reads from CSV file, this one is reading directly from config as commaseperated values)
+            //string[] filterByCustomersIds = null;
+            //if (!string.IsNullOrEmpty(_jobData.KUKCustomerID))
+            //    filterByCustomersIds = _jobData.KUKCustomerID.Split(",");
+            //bool onlyReturnCustomersFromFilter = filterByCustomersIds != null;
 
             var typeName = ((DisplayNameAttribute)typeof(T).GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
             string nextRecordsUrl;
@@ -83,19 +175,18 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 {
                     qry = string.Format("SELECT {0} FROM " + query + " WHERE SystemModStamp >= {1}", GetObjectFieldsSelectList(typeName), _jobData.LastCrawlFinishTime.AddDays(-2).ToString("o"));
                 }
-                else if (onlyReturnCustomersFromFilter)
-                {
-                    var resourceParams = string.Join(",",
-                        filterByCustomersIds.Select(r => "'" + r.ToString() + "'"));
+                //else if (onlyReturnCustomersFromFilter)
+                //{
+                //    var resourceParams = string.Join(",",
+                //        filterByCustomersIds.Select(r => "'" + r.ToString() + "'"));
 
-                    qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
-                }
+                //    qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
+                //}
                 else
                 {
                     qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1}", GetObjectFieldsSelectList(typeName), recordTypeId);
                     //qry = string.Format("SELECT {0} FROM " + query, GetObjectFieldsSelectList(typeName));
                 }
-
                 results = salesforceClient.QueryAsync<T>(qry).Result;
                 nextRecordsUrl = results.NextRecordsUrl;
             }
