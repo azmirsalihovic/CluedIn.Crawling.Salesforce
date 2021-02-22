@@ -90,7 +90,8 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                             var resourceParams = string.Join(",",
                                 firstHundredeIds.Select(r => "'" + r.ToString() + "'"));
 
-                            qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
+                            //qry = string.Format("SELECT {0} FROM " + query + " WHERE RecordTypeId = {1} AND KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), recordTypeId, resourceParams);
+                            qry = string.Format("SELECT {0} FROM " + query + " WHERE KUKCustomerID__c IN ({1})", GetObjectFieldsSelectList(typeName), resourceParams);
                         }
 
                         results = salesforceClient.QueryAsync<T>(qry).Result;
