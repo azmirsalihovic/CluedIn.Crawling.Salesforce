@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DuplicateEntityEANNumberQuery.cs" company="Clued In">
+// <copyright file="DuplicateEntityHomePhoneQuery.cs" company="Clued In">
 //   Copyright (c) 2019 Clued In. All rights reserved.
 // </copyright>
 // <summary>
-//   Implements the duplicate entity EAN Number query class.
+//   Implements the duplicate entity Home Phone query class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,11 +21,11 @@ using Core.Data.Repositories.Search.Filtering;
 
 namespace CluedIn.Processing.EntityResolution.Queries
 {
-    public class DuplicateEntityAccountEANNumberQuery : IOnlineDuplicateEntityQuery
+    public class DuplicateEntityHomePhoneQuery : IOnlineDuplicateEntityQuery
     {
-        public string Name { get; } = "EAN Number";
+        public string Name { get; } = "Home Phone";
 
-        public string DisplayName { get; } = "Duplicate Entity EAN Numbers";
+        public string DisplayName { get; } = "Duplicate Entity Home Phones";
 
         public async Task<IEnumerable<IDuplicateEntityQueryResultSet>> GetPotentialDuplicatesAsync(ExecutionContext context, EntityType entityType = null)
         {
@@ -60,9 +60,9 @@ namespace CluedIn.Processing.EntityResolution.Queries
             {
                 var query = new ParsedQuery();
                 query.Query = "*";
-                query.Fields = new List<string>() { "properties.semler.businesscustomer.EANNumber" };
+                query.Fields = new List<string>() { "properties.semler.customer.HomePhoneNr" };
                 query.Cursor = PagingCursor.Default;
-                query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("properties.semler.businesscustomer.EANNumber", 150) };
+                query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("properties.semler.customer.HomePhoneNr", 150) };
                 query.RankingSettings = ParsedQuery.DefaultRanking;
                 query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
                 query.OptionalFields = new List<string>();
@@ -106,7 +106,7 @@ namespace CluedIn.Processing.EntityResolution.Queries
 
             var query = new ParsedQuery();
             query.Query = "*";
-            query.Fields = new List<string>() { "properties.semler.businesscustomer.EANNumber" };
+            query.Fields = new List<string>() { "properties.semler.customer.HomePhoneNr" };
             query.Cursor = cursor;
             query.RankingSettings = ParsedQuery.DefaultRanking;
             query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
@@ -124,8 +124,8 @@ namespace CluedIn.Processing.EntityResolution.Queries
                                                                                  },
                                                                                  new FilterQuery()
                                                                                  {
-                                                                                     FieldName       = "properties.semler.businesscustomer.EANNumber",
-                                                                                     AggregationName = "properties.semler.businesscustomer.EANNumber",
+                                                                                     FieldName       = "properties.semler.customer.HomePhoneNr",
+                                                                                     AggregationName = "properties.semler.customer.HomePhoneNr",
                                                                                      Operator        = DefaultSearchOperator.And,
                                                                                      Value           = itemGroupingKey
                                                                                  }
