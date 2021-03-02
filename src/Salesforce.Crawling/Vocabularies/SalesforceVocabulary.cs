@@ -15,7 +15,8 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
         /// <summary>Initializes the <see cref="SalesforceVocabulary"/> class.</summary>
         static SalesforceVocabulary()
         {
-            Account = new SalesforceAccountVocabulary();
+            PrivateAccount = new SalesforcePrivateAccountVocabulary();
+            BusinessAccount = new SalesforceBusinessAccountVocabulary();
             //PrivateCustomer = new SalesforcePrivateCustomerVocabulary();
             //BusinessCustomer = new SalesforceBusinessCustomerVocabulary();
             Asset       = new SalesforceAssetVocabulary();
@@ -48,7 +49,8 @@ namespace CluedIn.Crawling.Salesforce.Vocabularies
 
         public static SalesforceAssetVocabulary Asset { get; private set; }
 
-        public static SalesforceAccountVocabulary Account { get; private set; }
+        public static SalesforcePrivateAccountVocabulary PrivateAccount { get; private set; }
+        public static SalesforceBusinessAccountVocabulary BusinessAccount { get; private set; }
 
         //public static SalesforcePrivateCustomerVocabulary PrivateCustomer { get; private set; }
         //public static SalesforceBusinessCustomerVocabulary BusinessCustomer { get; private set; }

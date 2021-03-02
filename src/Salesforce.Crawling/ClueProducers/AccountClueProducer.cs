@@ -139,8 +139,15 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             //{
             //    _factory.CreateOutgoingEntityReference(clue, EntityType.Tag, EntityEdgeType.For, value, value.Ownership);
             //}
-
-            var vocab = new SalesforceAccountVocabulary(isPerson);
+            dynamic vocab;
+            if (isPerson)
+            {
+                vocab = new SalesforcePrivateAccountVocabulary();
+            }
+            else
+            {
+                vocab = new SalesforceBusinessAccountVocabulary();
+            }
 
             data.Properties[vocab.CreatedById] = value.CreatedById.PrintIfAvailable();
             data.Properties[vocab.LastModifiedById] = value.ParentId.PrintIfAvailable();
