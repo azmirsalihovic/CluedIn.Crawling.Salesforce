@@ -240,13 +240,13 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.PersonAssistantPhone))
             {
                 data.Properties[vocab.PersonAssistantPhone] = value.PersonAssistantPhone;
-                data.Aliases.Add(value.PersonAssistantPhone);
+                //data.Aliases.Add(value.PersonAssistantPhone);
             }
 
             if (!string.IsNullOrEmpty(value.PersonBirthDate))
             {
                 data.Properties[vocab.PersonBirthDate] = value.PersonBirthDate.PrintIfAvailable();
-                data.Aliases.Add(value.PersonBirthDate);
+                //data.Aliases.Add(value.PersonBirthDate);
             }
 
             data.Properties[vocab.PersonContactId] = value.PersonContactId.PrintIfAvailable();
@@ -295,7 +295,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.PersonOtherPhone))
             {
                 data.Properties[vocab.PersonOtherPhone] = value.PersonOtherPhone;
-                data.Aliases.Add(value.PersonOtherPhone);
+                //data.Aliases.Add(value.PersonOtherPhone);
             }
 
             data.Properties[vocab.PersonOtherPostalCode] = value.PersonOtherPostalCode.PrintIfAvailable();

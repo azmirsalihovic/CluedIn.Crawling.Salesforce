@@ -120,7 +120,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.Birthdate))
             {
                 data.Properties[SalesforceVocabulary.Contact.Birthdate] = value.Birthdate.PrintIfAvailable();
-                data.Aliases.Add(value.Birthdate);
+                //data.Aliases.Add(value.Birthdate);
             }
 
             data.Properties[SalesforceVocabulary.Contact.Department] = value.Department.PrintIfAvailable();
@@ -131,7 +131,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.AssistantPhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.AssistantPhone] = value.AssistantPhone;
-                data.Aliases.Add(value.AssistantPhone);
+                //data.Aliases.Add(value.AssistantPhone);
             }
 
             if (!string.IsNullOrEmpty(value.Email))
@@ -143,7 +143,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.Fax))
             {
                 data.Properties[SalesforceVocabulary.Contact.Fax] = value.Fax;
-                data.Aliases.Add(value.Fax);
+                //data.Aliases.Add(value.Fax);
             }
 
             if (!string.IsNullOrEmpty(value.HomePhone))
@@ -200,7 +200,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.OtherPhone))
             {
                 data.Properties[SalesforceVocabulary.Contact.OtherPhone] = value.OtherPhone;
-                data.Aliases.Add(value.OtherPhone);
+                //data.Aliases.Add(value.OtherPhone);
             }
 
             data.Properties[SalesforceVocabulary.Contact.OtherPostalCode] = value.OtherPostalCode.PrintIfAvailable();
@@ -221,7 +221,7 @@ namespace CluedIn.Crawling.Salesforce.Subjects
             if (!string.IsNullOrEmpty(value.Phone))
             {
                 data.Properties[SalesforceVocabulary.Contact.Phone] = value.Phone;
-                data.Aliases.Add(value.Phone);
+                //data.Aliases.Add(value.Phone);
             }
 
             data.Properties[SalesforceVocabulary.Contact.PhotoUrl] = value.PhotoUrl.PrintIfAvailable();

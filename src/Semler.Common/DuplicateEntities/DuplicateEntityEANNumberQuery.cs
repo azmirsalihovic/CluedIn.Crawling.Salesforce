@@ -25,7 +25,7 @@ namespace CluedIn.Processing.EntityResolution.Queries
     {
         public string Name { get; } = "EAN Number";
 
-        public string DisplayName { get; } = "Duplicate Entity EAN Numbers";
+        public string DisplayName { get; } = "Customer EAN numbers";
 
         public async Task<IEnumerable<IDuplicateEntityQueryResultSet>> GetPotentialDuplicatesAsync(ExecutionContext context, EntityType entityType = null)
         {

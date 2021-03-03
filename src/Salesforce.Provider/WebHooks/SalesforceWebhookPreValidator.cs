@@ -3,9 +3,9 @@ using CluedIn.Crawling.Salesforce.Core;
 
 namespace CluedIn.Provider.Salesforce.WebHooks
 {
-    public class Name_WebhookPreValidator : BaseWebhookPrevalidator
+    public class SaleForceWebhookPreValidator : BaseWebhookPrevalidator
     {
-        public Name_WebhookPreValidator()
+        public SaleForceWebhookPreValidator()
             : base(SalesforceConstants.ProviderId, SalesforceConstants.ProviderName)
         {
         }
