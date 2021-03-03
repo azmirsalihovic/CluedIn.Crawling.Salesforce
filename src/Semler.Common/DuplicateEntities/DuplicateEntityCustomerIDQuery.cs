@@ -31,33 +31,33 @@ namespace CluedIn.Processing.EntityResolution.Queries
         {
             var repos = new CluedInRepositories();
 
-            IEnumerable<EntityType> entityTypes;
+            //IEnumerable<EntityType> entityTypes;
 
-            if (entityType == null)
-            {
-                var query = new ParsedQuery();
-                query.Query = "*";
-                query.Fields = new List<string>() { "entityType" };
-                query.Cursor = PagingCursor.Default;
-                query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("entityType", 150) };
-                query.RankingSettings = ParsedQuery.DefaultRanking;
-                query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
-                query.OptionalFields = new List<string>();
-                query.SearchSpecificEntityTypesByName = new List<string>();
+            //if (entityType == null)
+            //{
+            //    var query = new ParsedQuery();
+            //    query.Query = "*";
+            //    query.Fields = new List<string>() { "entityType" };
+            //    query.Cursor = PagingCursor.Default;
+            //    query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("entityType", 150) };
+            //    query.RankingSettings = ParsedQuery.DefaultRanking;
+            //    query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
+            //    query.OptionalFields = new List<string>();
+            //    query.SearchSpecificEntityTypesByName = new List<string>();
 
-                var results = await repos.Search.ExecuteQuery(context, query);
+            //    var results = await repos.Search.ExecuteQuery(context, query);
 
-                var entityTypeAggregation = (TermAggregationBucket)results.Aggregations.First().Value;
+            //    var entityTypeAggregation = (TermAggregationBucket)results.Aggregations.First().Value;
 
-                entityTypes = entityTypeAggregation.Items.Select(t => (EntityType)t.Name).ToList();
-            }
-            else
-                entityTypes = new[] { entityType };
+            //    entityTypes = entityTypeAggregation.Items.Select(t => (EntityType)t.Name).ToList();
+            //}
+            //else
+            //    entityTypes = new[] { entityType };
 
-            var resultSets = new List<IDuplicateEntityQueryResultSet>(entityTypes.Count());
+            var resultSets = new List<IDuplicateEntityQueryResultSet>();//(entityTypes.Count());
 
-            foreach (var type in entityTypes)
-            {
+            //foreach (var type in entityTypes)
+            //{
                 List<AggregationQuery> aggregationQueries = new List<AggregationQuery>();
                 aggregationQueries.Add(new TermAggregationQuery("properties.salesforce.account.KukCustomerIdC", 150));
                 aggregationQueries.Add(new TermAggregationQuery("properties.kuk.RetrieveCustomer.Customerid", 150));
@@ -71,16 +71,16 @@ namespace CluedIn.Processing.EntityResolution.Queries
                 query.OptionalFields = new List<string>();
                 query.SearchSpecificEntityTypesByName = new List<string>();
 
-                query.Filters = ParsedFilteringQuery.Parse(context, query, null, new[]
-                                                                                 {
-                                                                                     new FilterQuery()
-                                                                                     {
-                                                                                         FieldName       = "entityType",
-                                                                                         AggregationName = "entityType",
-                                                                                         Operator        = DefaultSearchOperator.And,
-                                                                                         Value           = type.ToString()
-                                                                                     }
-                                                                                 });
+                //query.Filters = ParsedFilteringQuery.Parse(context, query, null, new[]
+                //                                                                 {
+                //                                                                     new FilterQuery()
+                //                                                                     {
+                //                                                                         FieldName       = "entityType",
+                //                                                                         AggregationName = "entityType",
+                //                                                                         Operator        = DefaultSearchOperator.And,
+                //                                                                         Value           = type.ToString()
+                //                                                                     }
+                //                                                                 });
 
                 var results = await repos.Search.ExecuteQuery(context, query);
 
@@ -91,12 +91,12 @@ namespace CluedIn.Processing.EntityResolution.Queries
                     resultSets.Add(
                         new DuplicateEntityQueryResultSet(
                             this,
-                            type,
-                            $"Possible {type} Duplicates",
+                            "Customerid",
+                            $"Possible Customerid Duplicates",
                             nameAggregation.Items.Where(f => f.Count > 1).Select(f => new DuplicateEntityQueryGrouping(f.Name, f.Name, f.Count)))
                     );
                 }
-            }
+            //}
 
             return resultSets;
         }
@@ -118,13 +118,13 @@ namespace CluedIn.Processing.EntityResolution.Queries
 
             query.Filters = ParsedFilteringQuery.Parse(context, query, null, new[]
                                                                              {
-                                                                                 new FilterQuery()
-                                                                                 {
-                                                                                     FieldName       = "entityType",
-                                                                                     AggregationName = "entityType",
-                                                                                     Operator        = DefaultSearchOperator.And,
-                                                                                     Value           = resultSetKey
-                                                                                 },
+                                                                                 //new FilterQuery()
+                                                                                 //{
+                                                                                 //    FieldName       = "entityType",
+                                                                                 //    AggregationName = "entityType",
+                                                                                 //    Operator        = DefaultSearchOperator.And,
+                                                                                 //    Value           = resultSetKey
+                                                                                 //},
                                                                                  new FilterQuery()
                                                                                  {
                                                                                      FieldName       = "properties.salesforce.account.KukCustomerIdC",
