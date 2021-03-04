@@ -336,7 +336,7 @@ namespace Semler.Common.PreProcessing
 
         public static string GetNumbersAndRemoveLeadingZero(string input)
         {
-            return Convert.ToInt32(new string(input.Where(c => char.IsDigit(c)).ToArray())).ToString();
+            return Convert.ToInt64(new string(input.Where(c => char.IsDigit(c)).ToArray())).ToString();
         }
 
         public static string GetNumbers(string input)

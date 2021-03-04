@@ -60,9 +60,9 @@ namespace CluedIn.Processing.EntityResolution.Queries
             {
                 var query = new ParsedQuery();
                 query.Query = "*";
-                query.Fields = new List<string>() { "properties.semler.contact.MobPhoneNr" };
+                query.Fields = new List<string>() { "properties.semler.contact.MobPhoneNum" };
                 query.Cursor = PagingCursor.Default;
-                query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("properties.semler.contact.MobPhoneNr", 150) };
+                query.Aggregations = new List<AggregationQuery>() { new TermAggregationQuery("properties.semler.contact.MobPhoneNum", 150) };
                 query.RankingSettings = ParsedQuery.DefaultRanking;
                 query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
                 query.OptionalFields = new List<string>();
@@ -106,7 +106,7 @@ namespace CluedIn.Processing.EntityResolution.Queries
 
             var query = new ParsedQuery();
             query.Query = "*";
-            query.Fields = new List<string>() { "properties.semler.contact.MobPhoneNr" };
+            query.Fields = new List<string>() { "properties.semler.contact.MobPhoneNum" };
             query.Cursor = cursor;
             query.RankingSettings = ParsedQuery.DefaultRanking;
             query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
@@ -124,8 +124,8 @@ namespace CluedIn.Processing.EntityResolution.Queries
                                                                                  },
                                                                                  new FilterQuery()
                                                                                  {
-                                                                                     FieldName       = "properties.semler.contact.MobPhoneNr",
-                                                                                     AggregationName = "properties.semler.contact.MobPhoneNr",
+                                                                                     FieldName       = "properties.semler.contact.MobPhoneNum",
+                                                                                     AggregationName = "properties.semler.contact.MobPhoneNum",
                                                                                      Operator        = DefaultSearchOperator.And,
                                                                                      Value           = itemGroupingKey
                                                                                  }
