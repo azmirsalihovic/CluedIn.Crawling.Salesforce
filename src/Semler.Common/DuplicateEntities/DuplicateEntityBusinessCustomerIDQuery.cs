@@ -21,11 +21,11 @@ using Core.Data.Repositories.Search.Filtering;
 
 namespace CluedIn.Processing.EntityResolution.Queries
 {
-    public class DuplicateEntityCustomerIDQuery : IOnlineDuplicateEntityQuery
+    public class DuplicateEntityBusinessCustomerIDQuery : IOnlineDuplicateEntityQuery
     {
         public string Name { get; } = "Customer ID";
 
-        public string DisplayName { get; } = "Customer numbers";
+        public string DisplayName { get; } = "Business customer numbers";
 
         public async Task<IEnumerable<IDuplicateEntityQueryResultSet>> GetPotentialDuplicatesAsync(ExecutionContext context, EntityType entityType = null)
         {
@@ -59,11 +59,11 @@ namespace CluedIn.Processing.EntityResolution.Queries
             //foreach (var type in entityTypes)
             //{
                 List<AggregationQuery> aggregationQueries = new List<AggregationQuery>();
-                aggregationQueries.Add(new TermAggregationQuery("properties.salesforce.account.KukCustomerIdC", 150));
+                aggregationQueries.Add(new TermAggregationQuery("properties.salesforce.businessaccount.KukCustomerIdC", 150));
                 aggregationQueries.Add(new TermAggregationQuery("properties.kuk.RetrieveCustomer.Customerid", 150));
                 var query = new ParsedQuery();
                 query.Query = "*";
-                query.Fields = new List<string>() { "properties.salesforce.account.KukCustomerIdC", "properties.kuk.RetrieveCustomer.Customerid" };
+                query.Fields = new List<string>() { "properties.salesforce.businessaccount.KukCustomerIdC", "properties.kuk.RetrieveCustomer.Customerid" };
                 query.Cursor = PagingCursor.Default;
                 query.Aggregations = aggregationQueries;
                 query.RankingSettings = ParsedQuery.DefaultRanking;
@@ -109,7 +109,7 @@ namespace CluedIn.Processing.EntityResolution.Queries
 
             var query = new ParsedQuery();
             query.Query = "*";
-            query.Fields = new List<string>() { "properties.salesforce.account.KukCustomerIdC", "properties.kuk.RetrieveCustomer.Customerid" };
+            query.Fields = new List<string>() { "properties.salesforce.businessaccount.KukCustomerIdC", "properties.kuk.RetrieveCustomer.Customerid" };
             query.Cursor = cursor;
             query.RankingSettings = ParsedQuery.DefaultRanking;
             query.IncludeUnstructuredData = !ConfigurationManagerEx.AppSettings.GetFlag("Feature.Filters.ShadowEntities", true);
@@ -127,8 +127,8 @@ namespace CluedIn.Processing.EntityResolution.Queries
                                                                                  //},
                                                                                  new FilterQuery()
                                                                                  {
-                                                                                     FieldName       = "properties.salesforce.account.KukCustomerIdC",
-                                                                                     AggregationName = "properties.salesforce.account.KukCustomerIdC",
+                                                                                     FieldName       = "properties.salesforce.businessaccount.KukCustomerIdC",
+                                                                                     AggregationName = "properties.salesforce.businessaccount.KukCustomerIdC",
                                                                                      Operator        = DefaultSearchOperator.And,
                                                                                      Value           = itemGroupingKey
                                                                                  }
