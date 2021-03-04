@@ -27,20 +27,26 @@ namespace CluedIn.Crawling.Salesforce
 
             var client = _clientFactory.CreateNew(salesforcecrawlJobData);
 
-            foreach (var item in client.GetById<Account>("Account", "'0121t000000Dy89AAC'")) //Organization
+            foreach (var item in client.GetById<Account>("0121t000000Dy89AAC", default)) //Organization
             {
                 yield return item;
             }
 
-            foreach (var item in client.GetById<Account>("Account", "'0122o0000007pMrAAI'")) //Person
+            foreach (var item in client.GetById<Account>("0122o0000007pMrAAI", default)) //Person
             {
                 yield return item;
             }
 
-            foreach (var item in client.Get<Contact>("Contact", "'0121t0000010SSoAAM'")) //Organization
+            foreach (var item in client.Get<Contact>("0121t0000010SSoAAM", default)) //Organization
             {
                 yield return item;
             }
+
+            // Test a specific customer 
+            //foreach (var item in client.Get<Account>(default, "32501887"))
+            //{
+            //    yield return item;
+            //}
         }
     }
 }
