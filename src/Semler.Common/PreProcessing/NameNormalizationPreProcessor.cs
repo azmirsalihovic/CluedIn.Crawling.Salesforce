@@ -351,7 +351,7 @@ namespace Semler.Common.PreProcessing
 
         private static string GetLettersWithWhiteSpaces(string input)
         {
-            return new string(input.Where(c => char.IsLetter(c) || char.IsWhiteSpace(c)).ToArray());
+            return new string(input.Where(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c.Equals('&')).ToArray());
         }
 
         public static bool EqualsIgnoreCase(string strA, string strB)
