@@ -19,7 +19,7 @@ namespace CluedIn.Crawling.Salesforce.Integration.Test
         [Theory]
         [InlineData("/Provider/Root", 1)]
         [InlineData("/Organization", 18470)] //18.470 / 376.163
-        [InlineData("/Infrastructure/User", 84475)] //84.475 / 1.631.574
+        [InlineData("/Infrastructure/User", 81032)] //81.032 / 1.631.574
         [InlineData("/Infrastructure/Contact", 2465)] //0 / 2.465
         //TODO: Add details for the count of entityTypes your test produces
         //[InlineData("SOME_ENTITY_TYPE", 1)]
