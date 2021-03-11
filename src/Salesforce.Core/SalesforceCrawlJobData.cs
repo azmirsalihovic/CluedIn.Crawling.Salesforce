@@ -16,5 +16,7 @@ namespace CluedIn.Crawling.Salesforce.Core
         public string Password { get; set; }
         public string KUKCustomerID { get; set; }
         public string FilePath { get; set; }
+        public string FilePathOutput { get; set; }
+        public string CreateCSVFile { get; set; }
     }
 }

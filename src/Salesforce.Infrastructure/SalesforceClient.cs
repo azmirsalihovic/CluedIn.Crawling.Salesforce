@@ -13,6 +13,8 @@ using System.Reflection;
 using System.Linq;
 using Salesforce.Common;
 using Microsoft.VisualBasic.FileIO;
+using System.IO;
+using System.Text;
 
 namespace CluedIn.Crawling.Salesforce.Infrastructure
 {
@@ -28,6 +30,8 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
         private readonly ForceClient salesforceClient;
         private readonly SalesforceCrawlJobData _jobData;
         private readonly string token;
+        public readonly string filePathOutput;
+        public readonly bool createCSVFile;
 
         public SalesforceClient(ILogger<SalesforceClient> log, SalesforceCrawlJobData salesforceCrawlJobData) // TODO: pass on any extra dependencies
         {
@@ -45,6 +49,8 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
 
             _log = log ?? throw new ArgumentNullException(nameof(log));
             //salesforceClient = client ?? throw new ArgumentNullException(nameof(client));
+            filePathOutput = _jobData.FilePathOutput;
+            bool.TryParse(_jobData.CreateCSVFile, out createCSVFile);
 
             AuthenticationClient auth = Auth().Result;
             token = auth.AccessToken;
@@ -81,7 +87,7 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                         var qry = string.Empty;
                         var firstHundredeIds = kukCustomerIdList.Take(records);
                         var resourceParams = string.Join(",",
-                            firstHundredeIds.Select(r => "'" + r.ToString() + "'"));
+                            firstHundredeIds.Select(r => "'" + r.KUKCustomerID + "'"));
 
                         if (_jobData.LastCrawlFinishTime > DateTimeOffset.MinValue)
                         {
@@ -89,14 +95,19 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                         }
                         else
                         {
-                            if (!string.IsNullOrEmpty(kukCustomerID))
+                            if (!string.IsNullOrEmpty(kukCustomerID) && !string.IsNullOrEmpty(recordTypeId))
                             {
                                 qry = string.Format("SELECT {0} FROM {1} WHERE RecordTypeId = '{2}' AND KUKCustomerID__c = '{3}'", GetObjectFieldsSelectList(typeName), typeName, recordTypeId, kukCustomerID);
                                 kukCustomerIdList.Clear();
                             }
-                            else
+                            if (!string.IsNullOrEmpty(recordTypeId))
                             {
                                 qry = string.Format("SELECT {0} FROM {1} WHERE RecordTypeId = '{2}' AND KUKCustomerID__c IN ({3})", GetObjectFieldsSelectList(typeName), typeName, recordTypeId, resourceParams);
+                                kukCustomerIdList.RemoveRange(0, records);
+                            }
+                            else
+                            {
+                                qry = string.Format("SELECT {0} FROM {1} WHERE KUKCustomerID__c IN ({2})", GetObjectFieldsSelectList(typeName), typeName, resourceParams);
                                 kukCustomerIdList.RemoveRange(0, records);
                             }
                         }
@@ -116,11 +127,14 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
             }
             else
             {
-                Get<Account>(recordTypeId, kukCustomerID);
+                foreach (var item in Get<T>(recordTypeId, kukCustomerID, default))
+                {
+                    yield return item;
+                }
             }
         }
 
-        public IEnumerable<T> Get<T>(string recordTypeId = null, string kukCustomerID = null) where T : SystemObject
+        public IEnumerable<T> Get<T>(string recordTypeId = null, string kukCustomerID = null, string contactID = null) where T : SystemObject
         {
             var typeName = ((DisplayNameAttribute)typeof(T).GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
             string nextRecordsUrl;
@@ -139,6 +153,13 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                         qry = string.Format("SELECT {0} FROM {1} WHERE RecordTypeId = '{2}' AND KUKCustomerID__c = '{3}'", GetObjectFieldsSelectList(typeName), typeName, recordTypeId, kukCustomerID);
                     else
                         qry = string.Format("SELECT {0} FROM {1} WHERE KUKCustomerID__c = '{2}'", GetObjectFieldsSelectList(typeName), typeName, kukCustomerID);
+                }
+                if (!string.IsNullOrEmpty(contactID))
+                {
+                    if (!string.IsNullOrEmpty(recordTypeId))
+                        qry = string.Format("SELECT {0} FROM {1} WHERE RecordTypeId = '{2}' AND id = '{3}'", GetObjectFieldsSelectList(typeName), typeName, recordTypeId, contactID);
+                    else
+                        qry = string.Format("SELECT {0} FROM {1} WHERE id = '{2}'", GetObjectFieldsSelectList(typeName), typeName, contactID);
                 }
                 else
                 {
@@ -183,9 +204,9 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
             }
         }
 
-        public List<string> GetKUKCustomerIDList()
+        public List<Customers> GetKUKCustomerIDList()
         {
-            List<string> KUKCustomerIDList = new List<string>();
+            List<Customers> KUKCustomerIDList = new List<Customers>();
             try
             {
                 using (var parser = new TextFieldParser(_jobData.FilePath))
@@ -199,7 +220,10 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                         try
                         {
                             var filterByCustomersIds = parser.ReadFields();
-                            KUKCustomerIDList.Add(filterByCustomersIds[1]);
+                            KUKCustomerIDList.Add(new Customers
+                            {
+                                KUKCustomerID = filterByCustomersIds[1]
+                            });
                         }
                         catch (Exception)
                         {
@@ -213,6 +237,84 @@ namespace CluedIn.Crawling.Salesforce.Infrastructure
                 return null;
             }
             return KUKCustomerIDList;
+        }
+
+        public void GetCSVOutput()
+        {
+            var customerListFull = GetKUKCustomerIDList();
+            var customerListFound = new List<Customers>();
+            var customerListCombined = new List<Customers>();
+
+            foreach (var item in GetById<Account>(default, default))
+            {
+                customerListFound.Add(new Customers
+                {
+                    KUKCustomerID = item.KUKCustomerID__c,
+                    RecordTypeID = item.RecordTypeId,
+                    Match = "Y"
+                });
+            }
+
+            try
+            {
+                //Clear CSV file
+                File.WriteAllText(filePathOutput + "_" + DateTime.Now.ToShortDateString() + ".csv", "");
+
+                //Build output to a CSV file
+                var csv = new StringBuilder();
+                var header = string.Format("{0};{1};{2}", "KUKCustomerID", "RecordTypeID", "Match");
+                csv.AppendLine(header);
+
+                foreach (var item in customerListFull)
+                {
+                    var containsItem = customerListFound.Any(items => items.KUKCustomerID == item.KUKCustomerID);
+
+                    if (containsItem)
+                    {
+                        var recordTypeID = customerListFound.FirstOrDefault(x => x.KUKCustomerID == item.KUKCustomerID).RecordTypeID.ToString();
+
+                        customerListCombined.Add(new Customers
+                        {
+                            KUKCustomerID = item.KUKCustomerID,
+                            RecordTypeID = recordTypeID,
+                            Match = "Y"
+                        });
+                    }
+                    else
+                    {
+                        customerListCombined.Add(new Customers
+                        {
+                            KUKCustomerID = item.KUKCustomerID,
+                            RecordTypeID = item.RecordTypeID,
+                            Match = "N"
+                        });
+                    }
+                }
+
+                foreach (var item in customerListCombined)
+                {
+                    var newLine = string.Format("{0};{1};{2}", item.KUKCustomerID, item.RecordTypeID, item.Match);
+                    csv.AppendLine(newLine);
+                }
+
+                File.WriteAllText(filePathOutput + "_" + DateTime.Now.ToShortDateString() + ".csv", csv.ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public class Customers
+        {
+            public string KUKCustomerID { get; set; }
+            public string RecordTypeID { get; set; }
+            public string Match { get; set; }
+
+            public override string ToString()
+            {
+                return string.Format("KUKCustomerID {0};RecordTypeID {1};Match {2}", KUKCustomerID, RecordTypeID, Match);
+            }
         }
 
         public AccountInformation GetAccountInformation()

@@ -17,6 +17,8 @@ namespace CluedIn.Crawling.Salesforce.Core
             public const string Password = nameof(Password);
             public const string KUKCustomerID = nameof(KUKCustomerID);
             public const string FilePath = nameof(FilePath);
+            public const string FilePathOutput = nameof(FilePathOutput);
+            public const string CreateCSVFile = nameof(CreateCSVFile);
         }
 
         // TODO Complete the following section
@@ -93,6 +95,20 @@ namespace CluedIn.Crawling.Salesforce.Core
                     displayName = "List with KUKCustomerIDs",
                     isRequired = false,
                     name = nameof(KeyName.FilePath),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Outpt list with KUKCustomerIDs",
+                    isRequired = false,
+                    name = nameof(KeyName.FilePathOutput),
+                    type = "text"
+                },
+                new Control()
+                {
+                    displayName = "Created the output csv file with KUKCustomerIDs",
+                    isRequired = false,
+                    name = nameof(KeyName.CreateCSVFile),
                     type = "text"
                 }
             }

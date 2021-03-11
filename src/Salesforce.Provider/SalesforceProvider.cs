@@ -200,6 +200,12 @@ namespace CluedIn.Provider.Salesforce
             if (configuration.ContainsKey(SalesforceConstants.KeyName.FilePath))
             { jobData.FilePath = configuration[SalesforceConstants.KeyName.FilePath].ToString(); }
 
+            if (configuration.ContainsKey(SalesforceConstants.KeyName.FilePathOutput))
+            { jobData.FilePathOutput = configuration[SalesforceConstants.KeyName.FilePathOutput].ToString(); }
+
+            if (configuration.ContainsKey(SalesforceConstants.KeyName.CreateCSVFile))
+            { jobData.CreateCSVFile = configuration[SalesforceConstants.KeyName.CreateCSVFile].ToString(); }
+
             //if (!jobData.IsAuthenticated)
             //    return null;
 
