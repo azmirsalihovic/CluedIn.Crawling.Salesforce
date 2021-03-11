@@ -95,15 +95,15 @@ namespace Semler.Common.PreProcessing
                 metadata.Properties["semler.customer.FirstName"] = GetTitleCapital(firstNameC);
             }
 
-            if (metadata.Properties.TryGetValue("semler.privatecustomer.FirstNamePer1", out var firstNamePer1P))
-            {
-                metadata.Properties["semler.privatecustomer.FirstNamePer1"] = GetTitleCapital(firstNamePer1P);
-            }
+            //if (metadata.Properties.TryGetValue("semler.privatecustomer.FirstNamePer1", out var firstNamePer1P))
+            //{
+            //    metadata.Properties["semler.privatecustomer.FirstNamePer1"] = GetTitleCapital(firstNamePer1P);
+            //}
 
-            if (metadata.Properties.TryGetValue("semler.customer.FirstNamePer1", out var firstNamePer1C))
-            {
-                metadata.Properties["semler.customer.FirstNamePer1"] = GetTitleCapital(firstNamePer1C);
-            }
+            //if (metadata.Properties.TryGetValue("semler.customer.FirstNamePer1", out var firstNamePer1C))
+            //{
+            //    metadata.Properties["semler.customer.FirstNamePer1"] = GetTitleCapital(firstNamePer1C);
+            //}
 
             if (metadata.Properties.TryGetValue("semler.privatecustomer.COName", out var cONameP))
             {
@@ -115,15 +115,15 @@ namespace Semler.Common.PreProcessing
                 metadata.Properties["semler.customer.COName"] = GetTitleCapital(cONameC);
             }
 
-            if (metadata.Properties.TryGetValue("semler.privatecustomer.CONamePer1", out var cONamePer1P))
-            {
-                metadata.Properties["semler.privatecustomer.CONamePer1"] = GetTitleCapital(cONamePer1P);
-            }
+            //if (metadata.Properties.TryGetValue("semler.privatecustomer.CONamePer1", out var cONamePer1P))
+            //{
+            //    metadata.Properties["semler.privatecustomer.CONamePer1"] = GetTitleCapital(cONamePer1P);
+            //}
 
-            if (metadata.Properties.TryGetValue("semler.customer.CONamePer1", out var cONamePer1C))
-            {
-                metadata.Properties["semler.customer.CONamePer1"] = GetTitleCapital(cONamePer1C);
-            }
+            //if (metadata.Properties.TryGetValue("semler.customer.CONamePer1", out var cONamePer1C))
+            //{
+            //    metadata.Properties["semler.customer.CONamePer1"] = GetTitleCapital(cONamePer1C);
+            //}
 
             if (metadata.Properties.TryGetValue("semler.privatecustomer.LastName", out var lastNameP))
             {
@@ -135,15 +135,15 @@ namespace Semler.Common.PreProcessing
                 metadata.Properties["semler.customer.LastName"] = GetTitleCapital(lastNameC);
             }
 
-            if (metadata.Properties.TryGetValue("semler.privatecustomer.LastNamePer1", out var lastNamePer1P))
-            {
-                metadata.Properties["semler.privatecustomer.LastNamePer1"] = GetTitleCapital(lastNamePer1P);
-            }
+            //if (metadata.Properties.TryGetValue("semler.privatecustomer.LastNamePer1", out var lastNamePer1P))
+            //{
+            //    metadata.Properties["semler.privatecustomer.LastNamePer1"] = GetTitleCapital(lastNamePer1P);
+            //}
 
-            if (metadata.Properties.TryGetValue("semler.customer.LastNamePer1", out var lastNamePer1C))
-            {
-                metadata.Properties["semler.customer.LastNamePer1"] = GetTitleCapital(lastNamePer1C);
-            }
+            //if (metadata.Properties.TryGetValue("semler.customer.LastNamePer1", out var lastNamePer1C))
+            //{
+            //    metadata.Properties["semler.customer.LastNamePer1"] = GetTitleCapital(lastNamePer1C);
+            //}
 
             if (metadata.Properties.TryGetValue("semler.privatecustomer.Name", out var nameP))
             {
@@ -155,15 +155,15 @@ namespace Semler.Common.PreProcessing
                 metadata.Properties["semler.customer.Name"] = GetTitleCapital(nameC);
             }
 
-            if (metadata.Properties.TryGetValue("semler.privatecustomer.NamePer1", out var namePer1P))
-            {
-                metadata.Properties["semler.privatecustomer.NamePer1"] = GetTitleCapital(namePer1P);
-            }
+            //if (metadata.Properties.TryGetValue("semler.privatecustomer.NamePer1", out var namePer1P))
+            //{
+            //    metadata.Properties["semler.privatecustomer.NamePer1"] = GetTitleCapital(namePer1P);
+            //}
 
-            if (metadata.Properties.TryGetValue("semler.customer.NamePer1", out var namePer1C))
-            {
-                metadata.Properties["semler.customer.NamePer1"] = GetTitleCapital(namePer1C);
-            }
+            //if (metadata.Properties.TryGetValue("semler.customer.NamePer1", out var namePer1C))
+            //{
+            //    metadata.Properties["semler.customer.NamePer1"] = GetTitleCapital(namePer1C);
+            //}
 
             if (metadata.Properties.TryGetValue("semler.privatecustomer.City", out var cityP))
             {

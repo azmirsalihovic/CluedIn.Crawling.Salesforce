@@ -29,22 +29,14 @@ namespace Semler.Common.Vocabularies
                 
                 AdrFloor = group.Add(new VocabularyKey("AdrFloor", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Floor"));
                 AdrHouseChar = group.Add(new VocabularyKey("AdrHouseChar", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address House Character"));
-                AdrLine1Per1 = group.Add(new VocabularyKey("AdrLine1Per1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 1 Person 1"));
                 AdrPlace = group.Add(new VocabularyKey("AdrPlace", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Place"));
-                AdrPlacePer1 = group.Add(new VocabularyKey("AdrPlacePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Place Person 1"));
                 AdrStreet = group.Add(new VocabularyKey("AdrStreet", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Street"));
                 AdrStrNum = group.Add(new VocabularyKey("AdrStrNum", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Street Number"));
                 AdrSuite = group.Add(new VocabularyKey("AdrSuite", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Suite"));
-                CityPer1 = group.Add(new VocabularyKey("CityPer1", VocabularyKeyDataType.GeographyCity, VocabularyKeyVisibility.Visible).WithDisplayName("City Person 1"));
                 COName = group.Add(new VocabularyKey("COName", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name"));
-                CONamePer1 = group.Add(new VocabularyKey("CONamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("C/O Name Person 1"));
-                FirstNamePer1 = group.Add(new VocabularyKey("FirstNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("First Name Person 1"));
                 LandPhoneNum = group.Add(new VocabularyKey("LandPhoneNum", VocabularyKeyDataType.PhoneNumber, VocabularyKeyVisibility.Visible).WithDisplayName("Landline Phone Number"));
-                LastNamePer1 = group.Add(new VocabularyKey("LastNamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Last Name Person 1"));
                 Name = group.Add(new VocabularyKey("Name", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name"));
-                NamePer1 = group.Add(new VocabularyKey("NamePer1", VocabularyKeyDataType.PersonName, VocabularyKeyVisibility.Visible).WithDisplayName("Name Person 1"));
-                PostalCodePer1 = group.Add(new VocabularyKey("PostalCodePer1", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Postal Code Person 1"));
-
+                
                 AdrLine2 = group.Add(new VocabularyKey("AdrLine2", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Address Line 2"));
                 BelongDealerID = group.Add(new VocabularyKey("BelongDealerID", VocabularyKeyDataType.GeographyLocation, VocabularyKeyVisibility.Visible).WithDisplayName("Belong Dealer ID"));
                 EmailType = group.Add(new VocabularyKey("EmailType", VocabularyKeyDataType.Text, VocabularyKeyVisibility.Visible).WithDisplayName("E-mail Type"));
@@ -87,22 +79,14 @@ namespace Semler.Common.Vocabularies
 
             AddMapping(AdrFloor, SemlerVocabularies.Customer.AdrFloor);
             AddMapping(AdrHouseChar, SemlerVocabularies.Customer.AdrHouseChar);
-            AddMapping(AdrLine1Per1, SemlerVocabularies.Customer.AdrLine1Per1);
             AddMapping(AdrPlace, SemlerVocabularies.Customer.AdrPlace);
-            AddMapping(AdrPlacePer1, SemlerVocabularies.Customer.AdrPlacePer1);
             AddMapping(AdrStreet, SemlerVocabularies.Customer.AdrStreet);
             AddMapping(AdrStrNum, SemlerVocabularies.Customer.AdrStrNum);
             AddMapping(AdrSuite, SemlerVocabularies.Customer.AdrSuite);
             AddMapping(COName, SemlerVocabularies.Customer.COName);
-            AddMapping(CONamePer1, SemlerVocabularies.Customer.CONamePer1);
-            AddMapping(CityPer1, SemlerVocabularies.Customer.CityPer1);
-            AddMapping(FirstNamePer1, SemlerVocabularies.Customer.FirstNamePer1);
             AddMapping(LandPhoneNum, SemlerVocabularies.Customer.LandPhoneNum);
-            AddMapping(LastNamePer1, SemlerVocabularies.Customer.LastNamePer1);
             AddMapping(Name, SemlerVocabularies.Customer.Name);
-            AddMapping(NamePer1, SemlerVocabularies.Customer.NamePer1);
-            AddMapping(PostalCodePer1, SemlerVocabularies.Customer.PostalCodePer1);
-
+            
             AddMapping(AdrLine2, SemlerVocabularies.Customer.AdrLine2);
             AddMapping(BelongDealerID, SemlerVocabularies.Customer.BelongDealerID);
             AddMapping(EmailType, SemlerVocabularies.Customer.EmailType);
